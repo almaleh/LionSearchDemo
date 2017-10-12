@@ -36,26 +36,17 @@ class ViewController: NSViewController {
     var lyncNum: String = ""
     var mfa: Bool = false
     
+    @IBOutlet weak var txtField: NSTextField!
+    @IBOutlet weak var fullNameLabel: NSTextField!
+    @IBOutlet weak var jobTitleLabel: NSTextField!
+    @IBOutlet weak var hyperionCodeLabel: NSTextField!
+    @IBOutlet weak var countryLabel: NSTextField!
+    @IBOutlet weak var locationLabel: NSTextField!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
- 
-
-        
-        DispatchQueue.main.async { [unowned self] in
-            
-            
-            
-            
-            self.userData = self.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/besalmal")
-            
-            self.regex()
-        }
-        
-        
-        
-        
         
         
         
@@ -239,6 +230,26 @@ class ViewController: NSViewController {
         print("The user has last logged in on: " + lastLogon)
     }
     
+    @IBAction func btnPressed(_ sender: Any) {
+        
+        let userID = txtField.stringValue
+        DispatchQueue.main.async { [unowned self] in
+            self.userData = self.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/\(userID)")
+            self.regex()
+            self.updateLabels()
+        }
+        
+    }
+    
+    func updateLabels() {
+        txtField.stringValue = ""
+        
+        fullNameLabel.stringValue = fullName
+        jobTitleLabel.stringValue = jobTitle
+        hyperionCodeLabel.stringValue = hyperion
+        countryLabel.stringValue = country
+        locationLabel.stringValue = location
+    }
 
 }
 
