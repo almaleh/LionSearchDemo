@@ -9,7 +9,7 @@
 import Cocoa
 
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, NSTextFieldDelegate {
     
     var username: String = ""
     var userData: String = ""
@@ -35,27 +35,54 @@ class ViewController: NSViewController {
     var lyncVoice: Bool = false
     var lyncNum: String = ""
     var mfa: Bool = false
+    var daysRemaining = 0
+    var todaysDate: String = ""
     
-    @IBOutlet weak var txtField: NSTextField!
+    
+    @IBOutlet weak var spinner: NSProgressIndicator!
+    @IBOutlet weak var srchField: NSSearchField!
     @IBOutlet weak var fullNameLabel: NSTextField!
     @IBOutlet weak var jobTitleLabel: NSTextField!
     @IBOutlet weak var hyperionCodeLabel: NSTextField!
     @IBOutlet weak var countryLabel: NSTextField!
     @IBOutlet weak var locationLabel: NSTextField!
+    @IBOutlet weak var background: NSView!
+    @IBOutlet weak var stateLabel: NSTextField!
+    @IBOutlet weak var passExpLabel: NSTextField!
     
+    @IBOutlet weak var emailLabel: NSTextField!
+    @IBOutlet weak var lastLogonLabel: NSTextField!
+    @IBOutlet weak var badPassLabel: NSTextField!
+    @IBOutlet weak var accExpLabel: NSTextField!
+    @IBOutlet weak var brandLabel: NSTextField!
+    @IBOutlet weak var vpnLabel: NSTextField!
+    @IBOutlet weak var lyncLabel: NSTextField!
+    @IBOutlet weak var mfaLabel: NSTextField!
     
+    @IBOutlet weak var lockedLabel: NSTextField!
+    
+    @IBOutlet weak var disabledLabel: NSTextField!
+    
+
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
         
 
         
+        super.viewDidLoad()
+        srchField.sendsWholeSearchString = true
         
         // Do any additional setup after loading the view.
     }
 
+    
+    
+    override func viewWillAppear() {
+        background.alphaValue = 0
+        background.layer?.backgroundColor = NSColor.gray.cgColor
+        //box.layer?.setNeedsDisplay()
+    }
+    
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
@@ -185,7 +212,7 @@ class ViewController: NSViewController {
         let unixBadPass = msToUNIX(badPassInterval)
         let unixToday = Date().timeIntervalSince1970
         let unixPassExpDate = unixPass + ( 86400 * 90 )
-        let daysRemaining = Int(90 - ((unixToday - unixPass) / 86400))
+        daysRemaining = Int(90 - ((unixToday - unixPass) / 86400))
         let unixLastLogon = lastLogonInterval1 > lastLogonInterval2 ? msToUNIX(lastLogonInterval1) : msToUNIX(lastLogonInterval2)
     
         
@@ -194,6 +221,7 @@ class ViewController: NSViewController {
         passExpDate = formatDate(unixPassExpDate)
         badPassTime = formatDate(unixBadPass)
         lastLogon = formatDate(unixLastLogon)
+        todaysDate = formatDate(unixToday)
         
         print("Hyperion code: " + hyperion)
         print("Full name: " + fullName)
@@ -230,25 +258,81 @@ class ViewController: NSViewController {
         print("The user has last logged in on: " + lastLogon)
     }
     
-    @IBAction func btnPressed(_ sender: Any) {
-        
-        let userID = txtField.stringValue
-        DispatchQueue.main.async { [unowned self] in
-            self.userData = self.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/\(userID)")
-            self.regex()
-            self.updateLabels()
+    @IBAction func perfSearch(_ sender: Any) {
+        spinner.isHidden = false
+        spinner.startAnimation(srchField)
+        let userID = srchField.stringValue
+        if userID != "" {
+//            DispatchQueue.main.async { [unowned self] in
+                self.userData = self.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/\(userID)")
+                self.regex()
+                self.updateLabels()
+                background.alphaValue = 0
+                self.updateColors()
+//            }
         }
         
+        spinner.stopAnimation(srchField)
+        spinner.isHidden = true
+
     }
     
     func updateLabels() {
-        txtField.stringValue = ""
         
         fullNameLabel.stringValue = fullName
         jobTitleLabel.stringValue = jobTitle
         hyperionCodeLabel.stringValue = hyperion
         countryLabel.stringValue = country
         locationLabel.stringValue = location
+        stateLabel.stringValue = state
+        brandLabel.stringValue = brand
+        lockedLabel.stringValue = String(locked).capitalized
+        disabledLabel.stringValue = String(disabled).capitalized
+        if !expDate.contains("30828") {
+            accExpLabel.stringValue = expDate
+        } else if disabled {
+            accExpLabel.stringValue = "Disabled"
+        } else {
+            accExpLabel.stringValue = "Permanent employee"
+        }
+        if daysRemaining >= 0 {
+            passExpLabel.stringValue = "\(daysRemaining) days left, on " + passExpDate
+        } else {
+            passExpLabel.stringValue = "Expired \(-daysRemaining) days ago, on " + passExpDate
+        }
+        badPassLabel.stringValue = "\(badPassCount) times recently"
+        lastLogonLabel.stringValue = lastLogon
+        emailLabel.stringValue = emailPrim
+        if vpn {
+            vpnLabel.stringValue = "Enabled"
+        } else {
+            vpnLabel.stringValue = "Disabled"
+        }
+        
+        if lyncVoice {
+            lyncLabel.stringValue = lyncNum
+        } else {
+            lyncLabel.stringValue = "Lync Voice disabled"
+        }
+        
+        mfaLabel.stringValue = String(mfa).capitalized
+        
+        
+    }
+    
+    func updateColors() {
+        if disabled {
+            background.alphaValue = 0.7
+            
+        }
+    }
+    
+    @IBAction func clipButton(_ sender: Any) {
+        let pasteboard = NSPasteboard.general()
+        pasteboard.declareTypes([NSPasteboardTypeString], owner: nil)
+        let pasteboardString = "Report generated on: " + todaysDate + "\n\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nCountry: " + countryLabel.stringValue + "\nState: " + stateLabel.stringValue + "\nLocation: " + locationLabel.stringValue +  "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nMFA Enforced: " + mfaLabel.stringValue
+        pasteboard.setString(pasteboardString, forType: NSPasteboardTypeString)
+        
     }
 
 }
