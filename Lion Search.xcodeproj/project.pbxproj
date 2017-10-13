@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		287BB3041F901AF000033375 /* HyperlinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287BB3031F901AF000033375 /* HyperlinkTextField.swift */; };
 		28D2E0861F8D783800C5C030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D2E0851F8D783800C5C030 /* AppDelegate.swift */; };
 		28D2E0881F8D783800C5C030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D2E0871F8D783800C5C030 /* ViewController.swift */; };
 		28D2E08A1F8D783800C5C030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28D2E0891F8D783800C5C030 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		287BB3031F901AF000033375 /* HyperlinkTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperlinkTextField.swift; sourceTree = "<group>"; };
 		28D2E0821F8D783800C5C030 /* Lion Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lion Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		28D2E0851F8D783800C5C030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28D2E0871F8D783800C5C030 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 				28D2E0871F8D783800C5C030 /* ViewController.swift */,
 				28D2E0891F8D783800C5C030 /* Assets.xcassets */,
 				28D2E08B1F8D783800C5C030 /* Main.storyboard */,
+				287BB3031F901AF000033375 /* HyperlinkTextField.swift */,
 				28D2E08E1F8D783800C5C030 /* Info.plist */,
 			);
 			path = "Lion Search";
@@ -135,6 +138,7 @@
 			files = (
 				28D2E0881F8D783800C5C030 /* ViewController.swift in Sources */,
 				28D2E0861F8D783800C5C030 /* AppDelegate.swift in Sources */,
+				287BB3041F901AF000033375 /* HyperlinkTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +178,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -193,7 +197,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -224,7 +228,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -237,7 +241,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -291,6 +295,7 @@
 				28D2E0931F8D783800C5C030 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

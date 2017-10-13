@@ -31,14 +31,17 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     var badPassTime: String = ""
     var lastLogon: String = ""
     var emailPrim: String = ""
-//    var emailProx: String = ""
     var lyncVoice: Bool = false
     var lyncNum: String = ""
     var mfa: Bool = false
     var daysRemaining = 0
     var todaysDate: String = ""
+    var disconnected = false
+    var wrongID = false
+    var llBound = true
     
-    
+    // A whole lotta labels
+    @IBOutlet weak var alertImage: NSImageView!
     @IBOutlet weak var spinner: NSProgressIndicator!
     @IBOutlet weak var srchField: NSSearchField!
     @IBOutlet weak var fullNameLabel: NSTextField!
@@ -46,10 +49,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var hyperionCodeLabel: NSTextField!
     @IBOutlet weak var countryLabel: NSTextField!
     @IBOutlet weak var locationLabel: NSTextField!
-    @IBOutlet weak var background: NSView!
-    @IBOutlet weak var stateLabel: NSTextField!
     @IBOutlet weak var passExpLabel: NSTextField!
-    
     @IBOutlet weak var emailLabel: NSTextField!
     @IBOutlet weak var lastLogonLabel: NSTextField!
     @IBOutlet weak var badPassLabel: NSTextField!
@@ -58,18 +58,22 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var vpnLabel: NSTextField!
     @IBOutlet weak var lyncLabel: NSTextField!
     @IBOutlet weak var mfaLabel: NSTextField!
-    
     @IBOutlet weak var lockedLabel: NSTextField!
-    
+    @IBOutlet weak var hitachiLabel: NSTextField!
     @IBOutlet weak var disabledLabel: NSTextField!
     
-
     
     override func viewDidLoad() {
         
-
-        
         super.viewDidLoad()
+       alertImage.animator().alphaValue = 0.0
+        
+        
+        
+        
+        
+        
+        checkStatus()
         srchField.sendsWholeSearchString = true
         
         // Do any additional setup after loading the view.
@@ -78,9 +82,8 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     
     
     override func viewWillAppear() {
-        background.alphaValue = 0
-        background.layer?.backgroundColor = NSColor.gray.cgColor
-        //box.layer?.setNeedsDisplay()
+        
+        
     }
     
     override var representedObject: Any? {
@@ -90,6 +93,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     }
     
     
+    // Shell Directory Utility method
     
         @discardableResult
         func shell(_ args: String...) -> String {
@@ -109,15 +113,33 @@ class ViewController: NSViewController, NSTextFieldDelegate {
                 return ""
             }
             
-            guard !output.contains("read: Invalid Path") else { print ("DISCONNECTED")
-                return "DISCONNECTED" }
             
-            guard output.contains("dsAttrTypeNative") else { print("WRONG ID")
-                return "WRONG ID" }
+            if args[0].contains("dsconfigad") {
+                guard output.contains("global.publicisgroupe.net") else { print("UNBOUND")
+                    llBound = false
+                    fullNameLabel.stringValue = "Mac is not bound to LL!"
+                    fullNameLabel.textColor = NSColor.red
+                    jobTitleLabel.stringValue = "Bind your Mac to global.publicisgroupe.net then rerun the app"
+                    animateAlert("show")
+                    
+                    return "UNBOUND" }
+            } else if llBound {
+                guard !output.contains("read: Invalid Path") else { print ("DISCONNECTED")
+                    disconnected = true
+                    return "DISCONNECTED" }
+                guard output.contains("dsAttrTypeNative") else { print("WRONG ID")
+                    wrongID = true
+                    return "WRONG ID" }
+            }
             
+            disconnected = false
+            wrongID = false
             return output
+        
         }
 
+    // Regular expression look-up method
+    
     func regex() {
         
         
@@ -130,7 +152,6 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         let jobPat = "(?<=JobTitle:\\n )[^\\n]*"
         let passCountPat = "(?<=badPwdCount: )\\w+\\b"
         let emailPrimPat = "(?<=EMailAddress: )[^\\n]+"
-//        let emailProxPat = "(?<=smtp:).+"
         let lyncNumPat = "(?<=tel:)[^\\n]+"
         let expDatePat = "(?<=accountExpires: )\\w+\\b"
         let passUpdatePat = "(?<=PasswordLastSet: )[^(\n)]+"
@@ -259,6 +280,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     }
     
     @IBAction func perfSearch(_ sender: Any) {
+ 
         spinner.isHidden = false
         spinner.startAnimation(srchField)
         let userID = srchField.stringValue
@@ -267,27 +289,93 @@ class ViewController: NSViewController, NSTextFieldDelegate {
                 self.userData = self.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/\(userID)")
                 self.regex()
                 self.updateLabels()
-                background.alphaValue = 0
-                self.updateColors()
 //            }
         }
-        
         spinner.stopAnimation(srchField)
         spinner.isHidden = true
-
     }
     
+    // Checks for LL domain bind and internet connection upon launch
+    func checkStatus() {
+        spinner.isHidden = false
+        spinner.startAnimation(srchField)
+        self.shell("dsconfigad", "-show")
+        self.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/")
+        if disconnected {
+            animateAlert("show")
+            fullNameLabel.textColor = NSColor.red
+            fullNameLabel.stringValue = "No connection!"
+            jobTitleLabel.stringValue = "You must be connected to the office network, or use VPN"
+            return
+        }
+        spinner.stopAnimation(srchField)
+        spinner.isHidden = true
+    }
+    
+    
+    
     func updateLabels() {
+        guard llBound == true else { return }
+        animateAlert("hide")
+        hitachiLabel.isHidden = true
+        fullNameLabel.textColor = NSColor.black
+        lockedLabel.textColor = NSColor.black
+        disabledLabel.textColor = NSColor.black
+        passExpLabel.textColor = NSColor.black
+        if disconnected {
+            animateAlert("show")
+            fullNameLabel.textColor = NSColor.red
+            fullNameLabel.stringValue = "No connection!"
+            jobTitleLabel.stringValue = "You must be connected to the office network, or use VPN"
+            return
+        }
+        if wrongID {
+            animateAlert("show")
+            fullNameLabel.stringValue = "Invalid user ID"
+            fullNameLabel.textColor = NSColor.red
+            jobTitleLabel.stringValue = ""
+            hyperionCodeLabel.stringValue = ""
+            countryLabel.stringValue = ""
+            locationLabel.stringValue = ""
+            brandLabel.stringValue = ""
+            lockedLabel.stringValue = ""
+            disabledLabel.stringValue = ""
+            accExpLabel.stringValue = ""
+            passExpLabel.stringValue = ""
+            badPassLabel.stringValue = ""
+            lastLogonLabel.stringValue = ""
+            emailLabel.stringValue = ""
+            vpnLabel.stringValue = ""
+            lyncLabel.stringValue = ""
+            mfaLabel.stringValue = ""
+
+            return
+        }
+
         
         fullNameLabel.stringValue = fullName
         jobTitleLabel.stringValue = jobTitle
         hyperionCodeLabel.stringValue = hyperion
-        countryLabel.stringValue = country
+        countryLabel.stringValue = country + ", " + state
         locationLabel.stringValue = location
-        stateLabel.stringValue = state
         brandLabel.stringValue = brand
-        lockedLabel.stringValue = String(locked).capitalized
-        disabledLabel.stringValue = String(disabled).capitalized
+      
+        if locked {
+            animateAlert("show")
+            lockedLabel.stringValue = "Account is locked."
+            lockedLabel.textColor = NSColor.red
+            hitachiLabel.isHidden = false
+        } else {
+            lockedLabel.stringValue = "Account is not locked"
+        }
+        
+        if disabled {
+            animateAlert("show")
+            disabledLabel.stringValue = "Account is disabled"
+            disabledLabel.textColor = NSColor.red
+        } else {
+            disabledLabel.stringValue = "Account is not disabled"
+        }
         if !expDate.contains("30828") {
             accExpLabel.stringValue = expDate
         } else if disabled {
@@ -296,9 +384,14 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             accExpLabel.stringValue = "Permanent employee"
         }
         if daysRemaining >= 0 {
+            if case 0...18 = daysRemaining {
+                passExpLabel.textColor = NSColor.orange
+            }
             passExpLabel.stringValue = "\(daysRemaining) days left, on " + passExpDate
         } else {
             passExpLabel.stringValue = "Expired \(-daysRemaining) days ago, on " + passExpDate
+            passExpLabel.textColor = NSColor.red
+            animateAlert("show")
         }
         badPassLabel.stringValue = "\(badPassCount) times recently"
         lastLogonLabel.stringValue = lastLogon
@@ -311,8 +404,16 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         
         if lyncVoice {
             lyncLabel.stringValue = lyncNum
+            
+            
+            let attributes: [String: AnyObject] = [
+                NSForegroundColorAttributeName: NSColor.blue,
+                NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue as AnyObject
+            ]
+            lyncLabel.attributedStringValue = NSAttributedString(string: lyncLabel.stringValue, attributes: attributes)
+            
         } else {
-            lyncLabel.stringValue = "Lync Voice disabled"
+            lyncLabel.stringValue = "Lync Voice not activated"
         }
         
         mfaLabel.stringValue = String(mfa).capitalized
@@ -320,20 +421,45 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         
     }
     
-    func updateColors() {
-        if disabled {
-            background.alphaValue = 0.7
-            
+    func animateAlert(_ status: String) {
+        if status == "hide" {
+            NSAnimationContext.runAnimationGroup({ _ in
+                NSAnimationContext.current().duration = 0.2
+                alertImage.animator().alphaValue = 0.0
+            }, completionHandler:{
+            })
+        } else {
+            NSAnimationContext.runAnimationGroup({ _ in
+                NSAnimationContext.current().duration = 0.2
+                alertImage.animator().alphaValue = 1.0
+            }, completionHandler:{
+            })
         }
     }
     
     @IBAction func clipButton(_ sender: Any) {
         let pasteboard = NSPasteboard.general()
         pasteboard.declareTypes([NSPasteboardTypeString], owner: nil)
-        let pasteboardString = "Report generated on: " + todaysDate + "\n\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nCountry: " + countryLabel.stringValue + "\nState: " + stateLabel.stringValue + "\nLocation: " + locationLabel.stringValue +  "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nMFA Enforced: " + mfaLabel.stringValue
+        let pasteboardString = "Report generated on: " + todaysDate + "\n\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue +  "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA Enforced: " + mfaLabel.stringValue
         pasteboard.setString(pasteboardString, forType: NSPasteboardTypeString)
         
     }
+    
+    @IBAction func lyncCall(_ sender: Any) {
+        guard lyncNum != "" else { return }
+        var number = lyncNum
+        if lyncNum.contains("+") {
+            number.remove(at: lyncNum.startIndex)
+        }
+        NSWorkspace.shared().open(URL(string: "tel:" + number)!)
+    }
+    
+    @IBAction func helpBtn(_ sender: Any) {
+
+            NSWorkspace.shared().open(URL(string: "https://lion.box.com/v/LionSearchHelp")!)
+        
+    }
+
 
 }
 

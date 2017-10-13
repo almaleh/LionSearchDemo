@@ -643,7 +643,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="Lion Search Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="Lion Search Help" hidden="YES" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -669,10 +669,10 @@
                     <window key="window" title="Lion Search" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="649" y="453" width="440" height="530"/>
+                        <rect key="contentRect" x="649" y="453" width="440" height="550"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <value key="minSize" type="size" width="440" height="530"/>
-                        <value key="maxSize" type="size" width="440" height="530"/>
+                        <value key="minSize" type="size" width="440" height="550"/>
+                        <value key="maxSize" type="size" width="440" height="550"/>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -687,24 +687,20 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Lion_Search" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="440" height="530"/>
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="550"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YzQ-we-Bbu" userLabel="background" propertyAccessControl="none">
-                                <rect key="frame" x="0.0" y="452" width="107" height="78"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPE-3i-246">
+                                <rect key="frame" x="80" y="473" width="280" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </customView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPE-3i-246">
-                                <rect key="frame" x="0.0" y="463" width="440" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Please enter LL ID above" usesSingleLineMode="YES" id="96O-md-0XS">
+                                <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Please enter ID above" usesSingleLineMode="YES" id="96O-md-0XS">
                                     <font key="font" metaFont="systemMedium" size="18"/>
                                     <color key="textColor" white="0.0" alpha="0.80264340753424657" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68c-Rm-rc8">
-                                <rect key="frame" x="0.0" y="439" width="440" height="22"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68c-Rm-rc8">
+                                <rect key="frame" x="0.0" y="445" width="440" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="center" placeholderString="An LL ID is typically 8 characters long, and may end with a digit" usesSingleLineMode="YES" id="i7r-L8-vfn">
                                     <font key="font" metaFont="system"/>
@@ -713,7 +709,7 @@
                                 </textFieldCell>
                             </textField>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcP-av-LaV">
-                                <rect key="frame" x="161" y="494" width="117" height="22"/>
+                                <rect key="frame" x="161" y="508" width="117" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" placeholderString="LionLogin ID" usesSingleLineMode="YES" bezelStyle="round" id="icQ-LX-ir1">
                                     <font key="font" metaFont="system"/>
@@ -724,29 +720,69 @@
                                     <action selector="perfSearch:" target="XfG-lQ-9wD" id="lps-qP-3y9"/>
                                 </connections>
                             </searchField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EyF-tP-ckT">
+                                <rect key="frame" x="140" y="11" width="159" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Copy to clipboard" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UnU-pW-NB7">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clipButton:" target="XfG-lQ-9wD" id="1lV-qA-U8e"/>
+                                </connections>
+                            </button>
+                            <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ilF-ih-ioi">
+                                <rect key="frame" x="288" y="511" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsP-PY-0mU" customClass="HyperTextField" customModule="Lion_Search" customModuleProvider="target">
+                                <rect key="frame" x="246" y="303" width="140" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Click here to unlock" id="Ok5-fy-jnX">
+                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <color key="textColor" red="0.0016353240705125893" green="0.091602386730236796" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="href" value="https://update.publicisgroupe.net/"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0vD-ed-n5h" userLabel="Logo">
+                                <rect key="frame" x="16" y="476" width="95" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="LionSearch2" id="iX3-KQ-aSE"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="stf-w3-UCu" userLabel="Alert">
+                                <rect key="frame" x="346" y="483" width="51" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AlertCautionBadgeIcon" id="B5T-YT-xbz"/>
+                            </imageView>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dRq-YE-ZD3">
+                                <rect key="frame" x="397" y="16" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3YJ-uc-QhO">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="helpBtn:" target="XfG-lQ-9wD" id="zCh-AQ-JVU"/>
+                                </connections>
+                            </button>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="9" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="72w-UI-NQb">
-                                <rect key="frame" x="33" y="48" width="97" height="381"/>
+                                <rect key="frame" x="26" y="69" width="97" height="355"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2i-6X-Rac">
-                                        <rect key="frame" x="-2" y="364" width="57" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Country:" id="fZC-cx-sZ0">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFL-Eq-3H2">
-                                        <rect key="frame" x="-2" y="338" width="40" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="State:" id="pGC-JX-INM">
+                                        <rect key="frame" x="-2" y="338" width="60" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Location:" id="fZC-cx-sZ0">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YB-rW-l1h">
-                                        <rect key="frame" x="-2" y="312" width="60" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Location:" id="Rks-ZS-qwM">
+                                        <rect key="frame" x="-2" y="312" width="54" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="Rks-ZS-qwM">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -824,17 +860,17 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vI5-t7-lwl">
-                                        <rect key="frame" x="-2" y="52" width="35" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="VPN:" id="pEG-ZY-czV">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Hz-gx-yQP">
+                                        <rect key="frame" x="-2" y="52" width="86" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lync number:" id="XuQ-Aa-e62">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Hz-gx-yQP">
-                                        <rect key="frame" x="-2" y="26" width="86" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lync number:" id="XuQ-Aa-e62">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vI5-t7-lwl">
+                                        <rect key="frame" x="-2" y="26" width="35" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="VPN:" id="pEG-ZY-czV">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -864,7 +900,6 @@
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
-                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
                                     <real value="3.4028234663852886e+38"/>
@@ -881,84 +916,57 @@
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EyF-tP-ckT">
-                                <rect key="frame" x="140" y="5" width="159" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Copy to clipboard" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UnU-pW-NB7">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="clipButton:" target="XfG-lQ-9wD" id="1lV-qA-U8e"/>
-                                </connections>
-                            </button>
-                            <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ilF-ih-ioi">
-                                <rect key="frame" x="288" y="497" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </progressIndicator>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="9" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UvB-xw-CWJ">
-                                <rect key="frame" x="138" y="48" width="268" height="381"/>
+                                <rect key="frame" x="131" y="69" width="283" height="355"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GjC-am-g3Q">
-                                        <rect key="frame" x="-2" y="364" width="272" height="17"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GjC-am-g3Q">
+                                        <rect key="frame" x="-2" y="338" width="272" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="Qhs-aj-NFq"/>
                                         </constraints>
-                                        <textFieldCell key="cell" selectable="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="IOP-wy-iTg">
+                                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="IOP-wy-iTg">
                                             <font key="font" metaFont="systemMedium" size="13"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WnI-BU-xf4" userLabel="State">
-                                        <rect key="frame" x="-2" y="338" width="272" height="17"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="268" id="7YL-ST-kWr"/>
-                                        </constraints>
-                                        <textFieldCell key="cell" selectable="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="N1w-Zy-bDJ">
-                                            <font key="font" metaFont="systemMedium" size="13"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70X-9N-T2i">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70X-9N-T2i">
                                         <rect key="frame" x="-2" y="312" width="272" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="00I-H5-a7B"/>
                                         </constraints>
-                                        <textFieldCell key="cell" selectable="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="ak6-dJ-84w">
+                                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="ak6-dJ-84w">
                                             <font key="font" metaFont="systemMedium" size="13"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIQ-dy-8Wh" userLabel="Brand Label">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIQ-dy-8Wh" userLabel="Brand Label">
                                         <rect key="frame" x="-2" y="286" width="272" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="enT-9b-2FD"/>
                                         </constraints>
-                                        <textFieldCell key="cell" selectable="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="umH-Je-lsx">
+                                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="umH-Je-lsx">
                                             <font key="font" metaFont="systemMedium" size="13"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfB-9N-xg7">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfB-9N-xg7">
                                         <rect key="frame" x="-2" y="260" width="272" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="1qr-ra-A8b"/>
                                         </constraints>
-                                        <textFieldCell key="cell" selectable="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="kwS-iN-Gqk">
+                                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="kwS-iN-Gqk">
                                             <font key="font" metaFont="systemMedium" size="13"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6a-Y5-Rc7" userLabel="Locked Label">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6a-Y5-Rc7" userLabel="Locked Label">
                                         <rect key="frame" x="-2" y="234" width="272" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="udJ-ll-sL0"/>
@@ -969,85 +977,74 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xoe-tV-9XT" userLabel="Disabled Label">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xoe-tV-9XT" userLabel="Disabled Label">
                                         <rect key="frame" x="-2" y="208" width="272" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="3jK-pE-5c6"/>
                                         </constraints>
-                                        <textFieldCell key="cell" selectable="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="igm-kx-Fl9">
+                                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="igm-kx-Fl9">
                                             <font key="font" metaFont="systemMedium" size="13"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHU-Ht-Qvf">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHU-Ht-Qvf">
                                         <rect key="frame" x="-2" y="182" width="272" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="L1m-QO-Lx0"/>
                                         </constraints>
-                                        <textFieldCell key="cell" selectable="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="tob-lN-gET">
+                                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="tob-lN-gET">
                                             <font key="font" metaFont="systemMedium" size="13"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oMR-wf-JGi" userLabel="State">
-                                        <rect key="frame" x="-2" y="156" width="272" height="17"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oMR-wf-JGi" userLabel="Pass Exp Label">
+                                        <rect key="frame" x="-2" y="156" width="287" height="17"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="268" id="w1W-vG-SLa"/>
+                                            <constraint firstAttribute="width" constant="283" id="w1W-vG-SLa"/>
                                         </constraints>
-                                        <textFieldCell key="cell" selectable="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="Idj-27-tc9">
+                                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="Idj-27-tc9">
                                             <font key="font" metaFont="systemMedium" size="13"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRr-Yb-DZH">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRr-Yb-DZH">
                                         <rect key="frame" x="-2" y="130" width="272" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="xKC-t4-5E9"/>
                                         </constraints>
-                                        <textFieldCell key="cell" selectable="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="xxb-iu-RsG">
+                                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="xxb-iu-RsG">
                                             <font key="font" metaFont="systemMedium" size="13"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jt-ly-Npo" userLabel="Brand Label">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jt-ly-Npo" userLabel="Last Logon">
                                         <rect key="frame" x="-2" y="104" width="272" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="ZHy-W9-FWe"/>
                                         </constraints>
-                                        <textFieldCell key="cell" selectable="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="TsS-CC-iKf">
+                                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="TsS-CC-iKf">
                                             <font key="font" metaFont="systemMedium" size="13"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y51-mW-9pu">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y51-mW-9pu">
                                         <rect key="frame" x="-2" y="78" width="272" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="q7D-Me-FDj"/>
                                         </constraints>
-                                        <textFieldCell key="cell" selectable="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="i2G-Da-kTM">
+                                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="i2G-Da-kTM">
                                             <font key="font" metaFont="systemMedium" size="13"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MB7-cE-KE6" userLabel="Locked Label">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTi-8F-owu" userLabel="Lync Label">
                                         <rect key="frame" x="-2" y="52" width="272" height="17"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="268" id="c7g-hZ-4Ym"/>
-                                        </constraints>
-                                        <textFieldCell key="cell" selectable="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="JAS-9F-piD">
-                                            <font key="font" metaFont="systemMedium" size="13"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTi-8F-owu" userLabel="Disabled Label">
-                                        <rect key="frame" x="-2" y="26" width="272" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="sDP-xu-f18"/>
                                         </constraints>
@@ -1057,12 +1054,23 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDQ-lN-FuY" userLabel="Disabled Label">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MB7-cE-KE6" userLabel="VPN Label">
+                                        <rect key="frame" x="-2" y="26" width="272" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="268" id="c7g-hZ-4Ym"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="JAS-9F-piD">
+                                            <font key="font" metaFont="systemMedium" size="13"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="5" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDQ-lN-FuY" userLabel="MFA Label">
                                         <rect key="frame" x="-2" y="0.0" width="272" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="D07-WH-Wtz"/>
                                         </constraints>
-                                        <textFieldCell key="cell" selectable="YES" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="SNm-W3-Vuk">
+                                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="SNm-W3-Vuk">
                                             <font key="font" metaFont="systemMedium" size="13"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1084,10 +1092,8 @@
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
-                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
@@ -1108,13 +1114,14 @@
                     </view>
                     <connections>
                         <outlet property="accExpLabel" destination="qHU-Ht-Qvf" id="sen-8S-dHd"/>
-                        <outlet property="background" destination="YzQ-we-Bbu" id="sJz-wV-Gsx"/>
+                        <outlet property="alertImage" destination="stf-w3-UCu" id="IpV-Jn-PPG"/>
                         <outlet property="badPassLabel" destination="jRr-Yb-DZH" id="TVr-yD-pMf"/>
                         <outlet property="brandLabel" destination="oIQ-dy-8Wh" id="PVN-GQ-rhf"/>
                         <outlet property="countryLabel" destination="GjC-am-g3Q" id="P0p-3N-tve"/>
                         <outlet property="disabledLabel" destination="Xoe-tV-9XT" id="iH3-C6-oQb"/>
                         <outlet property="emailLabel" destination="y51-mW-9pu" id="1pf-3J-XeZ"/>
                         <outlet property="fullNameLabel" destination="IPE-3i-246" id="L7g-Du-BIp"/>
+                        <outlet property="hitachiLabel" destination="nsP-PY-0mU" id="Fga-dg-Qdz"/>
                         <outlet property="hyperionCodeLabel" destination="CfB-9N-xg7" id="4rb-gz-5hp"/>
                         <outlet property="jobTitleLabel" destination="68c-Rm-rc8" id="dIY-YS-cz3"/>
                         <outlet property="lastLogonLabel" destination="1Jt-ly-Npo" id="38a-92-Egu"/>
@@ -1125,7 +1132,6 @@
                         <outlet property="passExpLabel" destination="oMR-wf-JGi" id="kFG-5z-hou"/>
                         <outlet property="spinner" destination="ilF-ih-ioi" id="Hru-da-ct5"/>
                         <outlet property="srchField" destination="xcP-av-LaV" id="18d-py-lfa"/>
-                        <outlet property="stateLabel" destination="WnI-BU-xf4" id="taf-JU-sh7"/>
                         <outlet property="vpnLabel" destination="MB7-cE-KE6" id="iYK-Ir-8Tg"/>
                     </connections>
                 </viewController>
@@ -1134,4 +1140,8 @@
             <point key="canvasLocation" x="74" y="1011"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AlertCautionBadgeIcon" width="209.5" height="194"/>
+        <image name="LionSearch2" width="272.16000366210938" height="207.83999633789062"/>
+    </resources>
 </document>
