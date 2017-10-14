@@ -750,7 +750,7 @@
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0vD-ed-n5h" userLabel="Logo">
                                 <rect key="frame" x="16" y="476" width="95" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="LionSearch2" id="iX3-KQ-aSE"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="LionSearch2 low quality" id="iX3-KQ-aSE"/>
                             </imageView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="stf-w3-UCu" userLabel="Alert">
                                 <rect key="frame" x="346" y="483" width="51" height="47"/>
@@ -1142,6 +1142,6 @@
     </scenes>
     <resources>
         <image name="AlertCautionBadgeIcon" width="209.5" height="194"/>
-        <image name="LionSearch2" width="272.16000366210938" height="207.83999633789062"/>
+        <image name="LionSearch2 low quality" width="37.919998168945312" height="29"/>
     </resources>
 </document>
