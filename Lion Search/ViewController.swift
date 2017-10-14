@@ -68,13 +68,14 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         super.viewDidLoad()
        alertImage.animator().alphaValue = 0.0
         
-        
-        
-        
-        
-        
-        checkStatus()
         srchField.sendsWholeSearchString = true
+        
+        
+        
+        
+        
+            self.checkStatus()
+      
         
         // Do any additional setup after loading the view.
     }
@@ -104,7 +105,10 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             let pipe = Pipe()
             task.standardOutput = pipe
     
-            task.launch()
+//            DispatchQueue.global().async {
+                task.launch()
+//            }
+//            task.launch()
 //            task.waitUntilExit()
             
             let data = pipe.fileHandleForReading.readDataToEndOfFile()
@@ -212,7 +216,9 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         brand = reg(brandPat)
         jobTitle = reg(jobPat)
         vpn = userData.contains("RemoteAccessVPN")
-        locked = !userData.contains("lockoutTime: 0")
+        if userData.contains("lockoutTime:") {
+            locked = !userData.contains("lockoutTime: 0")
+        }
         disabled = !userData.contains(":userAccountControl: 512")
         badPassCount = reg(passCountPat)
         emailPrim = reg(emailPrimPat)
@@ -244,39 +250,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         lastLogon = formatDate(unixLastLogon)
         todaysDate = formatDate(unixToday)
         
-        print("Hyperion code: " + hyperion)
-        print("Full name: " + fullName)
-        print("Country: " + country + ", " + state)
-        print("Location: " + location)
-        print("Brand: " + brand)
-        print("Job title: " + jobTitle)
-        print("VPN: " + String(vpn).capitalized)
-        print("Locked: " + String(locked).capitalized)
-        print("Disabled: " + String(disabled).capitalized)
-        print("Bad password count: " + badPassCount)
-        print("Bad password time: " + badPassTime)
-        print("Primary e-mail address: " + emailPrim)
-//        print("Proxy e-mail: " + emailProx)
-        print("Lync Voice activated: " + String(lyncVoice).capitalized)
-        if lyncVoice {
-            print("Lync number: " + lyncNum)
-        }
-        if !expDate.contains("30828") {
-            print("Account expires on: " + expDate)
-        } else if disabled {
-            print("Account expires on: Disabled")
-        } else {
-            print("Expiration date: Permanent employee")
-        }
-        print("Password was last updated on: " + passUpdateDate)
-        if daysRemaining >= 0 {
-            print("Password expires in \(daysRemaining) days, on " + passExpDate)
-        } else {
-            print("Password has expired \(-daysRemaining) days ago, on " + passExpDate)
-        }
         
-        print("MFA Enforcement: " + String(mfa).capitalized)
-        print("The user has last logged in on: " + lastLogon)
     }
     
     @IBAction func perfSearch(_ sender: Any) {
@@ -285,11 +259,12 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         spinner.startAnimation(srchField)
         let userID = srchField.stringValue
         if userID != "" {
-//            DispatchQueue.main.async { [unowned self] in
+
                 self.userData = self.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/\(userID)")
+            
                 self.regex()
                 self.updateLabels()
-//            }
+            
         }
         spinner.stopAnimation(srchField)
         spinner.isHidden = true
@@ -333,6 +308,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             animateAlert("show")
             fullNameLabel.stringValue = "Invalid user ID"
             fullNameLabel.textColor = NSColor.red
+            shakeField(srchField)
             jobTitleLabel.stringValue = ""
             hyperionCodeLabel.stringValue = ""
             countryLabel.stringValue = ""
@@ -356,7 +332,11 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         fullNameLabel.stringValue = fullName
         jobTitleLabel.stringValue = jobTitle
         hyperionCodeLabel.stringValue = hyperion
-        countryLabel.stringValue = country + ", " + state
+        if country != "" {
+            countryLabel.stringValue = country + ", " + state
+        } else {
+            countryLabel.stringValue = state
+        }
         locationLabel.stringValue = location
         brandLabel.stringValue = brand
       
@@ -458,6 +438,16 @@ class ViewController: NSViewController, NSTextFieldDelegate {
 
             NSWorkspace.shared().open(URL(string: "https://lion.box.com/v/LionSearchHelp")!)
         
+    }
+    
+    func shakeField(_ field: NSSearchField) {
+        let animation = CAKeyframeAnimation()
+        animation.keyPath = "position.x"
+        animation.values = [0, 10, -10, 10, -5, 5, -5, 0 ]
+        animation.keyTimes = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]
+        animation.duration = 0.4
+        animation.isAdditive = true
+        field.layer?.add(animation, forKey: "shake")
     }
 
 
