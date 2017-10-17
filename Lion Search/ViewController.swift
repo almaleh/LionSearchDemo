@@ -153,7 +153,9 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         let statePat = "(?<=State: )\\w+\\b"
         let locationPat = "(?<=Street:\\n )[^\\n]*"
         let brandPat = "(?<=Native:company: )\\w+\\b"
-        let jobPat = "(?<=JobTitle:\\n )[^\\n]*"
+        let brandPat2 = "(?<=Native:company:\\n )[^\\n]+\\b"
+        let jobPat = "(?<=JobTitle: ).*\\n(?=LastName:)"
+        let jobPat2 = "(?<=JobTitle:\\n ).*\\n(?=LastName:)"
         let passCountPat = "(?<=badPwdCount: )\\w+\\b"
         let emailPrimPat = "(?<=EMailAddress: )[^\\n]+"
         let lyncNumPat = "(?<=tel:)[^\\n]+"
@@ -214,7 +216,13 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         state = reg(statePat)
         location = reg(locationPat)
         brand = reg(brandPat)
+        if brand == "" {
+            brand = reg(brandPat2)
+        }
         jobTitle = reg(jobPat)
+        if jobTitle == "" {
+            jobTitle = reg(jobPat2)
+        }
         vpn = userData.contains("RemoteAccessVPN")
         if userData.contains("lockoutTime:") {
             locked = !userData.contains("lockoutTime: 0")
@@ -223,16 +231,39 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         badPassCount = reg(passCountPat)
         emailPrim = reg(emailPrimPat)
 //        emailProx = reg(emailProxPat)
-        lyncVoice = userData.contains("LyncVoice:ACTIVATED")
+        lyncVoice = userData.contains("dsAttrTypeNative:msRTCSIP-Line:")
         lyncNum = reg(lyncNumPat)
         passUpdateDate = reg(passUpdatePat)
         mfa = userData.contains("LionBOX-MFA")
+        let badPassInterval: Double = 0
+        let lastLogonInterval1: Double = 0
         
-        guard let expInterval: Double = Double(reg(expDatePat)) else { return }
-        guard let passInterval: Double = Double(reg(passUpdatePat)) else { return }
-        guard let badPassInterval: Double = Double(reg(badPassTimePat)) else { return }
-        guard let lastLogonInterval1: Double = Double(reg(lastLogonPat1)) else { return }
-        guard let lastLogonInterval2: Double = Double(reg(lastLogonPat2)) else { return }
+        guard let expInterval: Double = Double(reg(expDatePat)) else {
+            print("EXPDATEPAT")
+            return }
+        guard let passInterval: Double = Double(reg(passUpdatePat)) else {
+            print("PASSUPDATEPAT")
+            return }
+        
+        // PROBLEM AREA
+        if reg(badPassTimePat) != "" {
+            guard let badPassInterval: Double = Double(reg(badPassTimePat)) else {
+                print("BADPASSTIMEPAT")
+                return }
+        }
+        
+        if reg(lastLogonPat1) != "" {
+            guard let lastLogonInterval1: Double = Double(reg(lastLogonPat1)) else {
+                print("LASTLOGON")
+                return }
+        }
+        
+        guard let lastLogonInterval2: Double = Double(reg(lastLogonPat2)) else {
+            print("LASTLOGONPAT")
+            return }
+        
+        
+        
         
         let unixExp = msToUNIX(expInterval)
         let unixPass = msToUNIX(passInterval)
@@ -241,13 +272,33 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         let unixPassExpDate = unixPass + ( 86400 * 90 )
         daysRemaining = Int(90 - ((unixToday - unixPass) / 86400))
         let unixLastLogon = lastLogonInterval1 > lastLogonInterval2 ? msToUNIX(lastLogonInterval1) : msToUNIX(lastLogonInterval2)
-    
         
         expDate = formatDate(unixExp)
+        
         passUpdateDate = formatDate(unixPass)
         passExpDate = formatDate(unixPassExpDate)
         badPassTime = formatDate(unixBadPass)
-        lastLogon = formatDate(unixLastLogon)
+        let lastLogonDays = Int((unixToday - unixLastLogon) / 86400)
+        switch lastLogonDays {
+        case 0...7:
+            lastLogon = "Less than a week ago"
+        case 7...30:
+            lastLogon = "Less than a month ago"
+        case 30...60:
+            lastLogon = "1 month ago"
+        case 60...90:
+            lastLogon = "2 months ago"
+        case 90...120:
+            lastLogon = "3 months ago"
+        case 120...150:
+            lastLogon = "4 months ago"
+        case 150...180:
+            lastLogon = "5 months ago"
+        case 180...210:
+            lastLogon = "Over 6 months ago"
+        default:
+            lastLogon = "Over a year ago"
+        }
         todaysDate = formatDate(unixToday)
         
         
@@ -255,6 +306,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     
     @IBAction func perfSearch(_ sender: Any) {
  
+        clearValues()
         spinner.isHidden = false
         spinner.startAnimation(srchField)
         let userID = srchField.stringValue
@@ -291,6 +343,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     
     func updateLabels() {
         guard llBound == true else { return }
+        clearLabels()
         animateAlert("hide")
         hitachiLabel.isHidden = true
         fullNameLabel.textColor = NSColor.black
@@ -309,28 +362,17 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             fullNameLabel.stringValue = "Invalid user ID"
             fullNameLabel.textColor = NSColor.red
             shakeField(srchField)
-            jobTitleLabel.stringValue = ""
-            hyperionCodeLabel.stringValue = ""
-            countryLabel.stringValue = ""
-            locationLabel.stringValue = ""
-            brandLabel.stringValue = ""
-            lockedLabel.stringValue = ""
-            disabledLabel.stringValue = ""
-            accExpLabel.stringValue = ""
-            passExpLabel.stringValue = ""
-            badPassLabel.stringValue = ""
-            lastLogonLabel.stringValue = ""
-            emailLabel.stringValue = ""
-            vpnLabel.stringValue = ""
-            lyncLabel.stringValue = ""
-            mfaLabel.stringValue = ""
-
+            clearLabels()
             return
         }
 
         
         fullNameLabel.stringValue = fullName
-        jobTitleLabel.stringValue = jobTitle
+        if jobTitle != "" {
+            jobTitleLabel.stringValue = jobTitle
+        } else {
+            jobTitleLabel.stringValue = " "
+        }
         hyperionCodeLabel.stringValue = hyperion
         if country != "" {
             countryLabel.stringValue = country + ", " + state
@@ -363,7 +405,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         } else {
             accExpLabel.stringValue = "Permanent employee"
         }
-        if daysRemaining >= 0 {
+        if daysRemaining > 0 {
             if case 0...18 = daysRemaining {
                 passExpLabel.textColor = NSColor.orange
             }
@@ -373,7 +415,11 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             passExpLabel.textColor = NSColor.red
             animateAlert("show")
         }
-        badPassLabel.stringValue = "\(badPassCount) times recently"
+        if badPassCount != "" {
+            badPassLabel.stringValue = "\(badPassCount) times recently"
+        } else {
+            badPassLabel.stringValue = "0"
+        }
         lastLogonLabel.stringValue = lastLogon
         emailLabel.stringValue = emailPrim
         if vpn {
@@ -401,6 +447,44 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         
     }
     
+    func clearLabels() {
+        jobTitleLabel.stringValue = ""
+        hyperionCodeLabel.stringValue = ""
+        countryLabel.stringValue = ""
+        locationLabel.stringValue = ""
+        brandLabel.stringValue = ""
+        lockedLabel.stringValue = ""
+        disabledLabel.stringValue = ""
+        accExpLabel.stringValue = ""
+        passExpLabel.stringValue = ""
+        badPassLabel.stringValue = ""
+        lastLogonLabel.stringValue = ""
+        emailLabel.stringValue = ""
+        vpnLabel.stringValue = ""
+        lyncLabel.stringValue = ""
+        mfaLabel.stringValue = ""
+
+    }
+    
+    func clearValues() {
+        jobTitle = ""
+        hyperion = ""
+        country = ""
+        state = ""
+        location = ""
+        brand = ""
+        locked = false
+        disabled = false
+        expDate = ""
+        passExpDate = ""
+        badPassCount = ""
+        lastLogon = ""
+        emailPrim = ""
+        vpn = false
+        lyncVoice = false
+        mfa = false
+    }
+    
     func animateAlert(_ status: String) {
         if status == "hide" {
             NSAnimationContext.runAnimationGroup({ _ in
@@ -420,11 +504,11 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBAction func clipButton(_ sender: Any) {
         let pasteboard = NSPasteboard.general()
         pasteboard.declareTypes([NSPasteboardTypeString], owner: nil)
-        let pasteboardString = "Report generated on: " + todaysDate + "\n\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue +  "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA Enforced: " + mfaLabel.stringValue
+        let pasteboardString = "Report generated on: " + todaysDate + "\n\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue + "\nBrand: " + brandLabel.stringValue + "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA Enforced: " + mfaLabel.stringValue
         pasteboard.setString(pasteboardString, forType: NSPasteboardTypeString)
         
     }
-    
+//      LyncCall Functionality:
     @IBAction func lyncCall(_ sender: Any) {
         guard lyncNum != "" else { return }
         var number = lyncNum

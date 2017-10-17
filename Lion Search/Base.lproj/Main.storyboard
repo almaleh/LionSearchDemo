@@ -1140,7 +1140,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AlertCautionBadgeIcon" width="209.5" height="194"/>
-        <image name="LionSearch2 low quality" width="37.919998168945312" height="29"/>
+        <image name="AlertCautionBadgeIcon" width="105" height="97"/>
+        <image name="LionSearch2 low quality" width="20.159999847412109" height="15.359999656677246"/>
     </resources>
 </document>
