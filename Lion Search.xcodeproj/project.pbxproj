@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2873F04E1F96694200F1BE42 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2873F04D1F96694200F1BE42 /* User.swift */; };
+		2873F0501F96720100F1BE42 /* LyncCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2873F04F1F96720100F1BE42 /* LyncCaller.swift */; };
 		287BB3041F901AF000033375 /* HyperlinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287BB3031F901AF000033375 /* HyperlinkTextField.swift */; };
 		28D2E0861F8D783800C5C030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D2E0851F8D783800C5C030 /* AppDelegate.swift */; };
 		28D2E0881F8D783800C5C030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D2E0871F8D783800C5C030 /* ViewController.swift */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2873F04D1F96694200F1BE42 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2873F04F1F96720100F1BE42 /* LyncCaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyncCaller.swift; sourceTree = "<group>"; };
 		287BB3031F901AF000033375 /* HyperlinkTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperlinkTextField.swift; sourceTree = "<group>"; };
 		28D2E0821F8D783800C5C030 /* Lion Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lion Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		28D2E0851F8D783800C5C030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +39,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2873F0491F9668E800F1BE42 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				287BB3031F901AF000033375 /* HyperlinkTextField.swift */,
+				2873F04D1F96694200F1BE42 /* User.swift */,
+				2873F04F1F96720100F1BE42 /* LyncCaller.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2873F04A1F9668F500F1BE42 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				28D2E08B1F8D783800C5C030 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		2873F04B1F96690200F1BE42 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				28D2E0851F8D783800C5C030 /* AppDelegate.swift */,
+				28D2E0871F8D783800C5C030 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		2873F04C1F96691400F1BE42 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				28D2E0891F8D783800C5C030 /* Assets.xcassets */,
+				28D2E08E1F8D783800C5C030 /* Info.plist */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
 		28D2E0791F8D783800C5C030 = {
 			isa = PBXGroup;
 			children = (
@@ -54,12 +94,10 @@
 		28D2E0841F8D783800C5C030 /* Lion Search */ = {
 			isa = PBXGroup;
 			children = (
-				28D2E0851F8D783800C5C030 /* AppDelegate.swift */,
-				28D2E0871F8D783800C5C030 /* ViewController.swift */,
-				28D2E0891F8D783800C5C030 /* Assets.xcassets */,
-				28D2E08B1F8D783800C5C030 /* Main.storyboard */,
-				287BB3031F901AF000033375 /* HyperlinkTextField.swift */,
-				28D2E08E1F8D783800C5C030 /* Info.plist */,
+				2873F0491F9668E800F1BE42 /* Model */,
+				2873F04B1F96690200F1BE42 /* Controller */,
+				2873F04A1F9668F500F1BE42 /* View */,
+				2873F04C1F96691400F1BE42 /* Support Files */,
 			);
 			path = "Lion Search";
 			sourceTree = "<group>";
@@ -136,6 +174,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2873F04E1F96694200F1BE42 /* User.swift in Sources */,
+				2873F0501F96720100F1BE42 /* LyncCaller.swift in Sources */,
 				28D2E0881F8D783800C5C030 /* ViewController.swift in Sources */,
 				28D2E0861F8D783800C5C030 /* AppDelegate.swift in Sources */,
 				287BB3041F901AF000033375 /* HyperlinkTextField.swift in Sources */,

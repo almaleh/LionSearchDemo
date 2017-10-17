@@ -11,35 +11,7 @@ import Cocoa
 
 class ViewController: NSViewController, NSTextFieldDelegate {
     
-    var username: String = ""
-    var userData: String = ""
-    var fullName: String = ""
-    var hyperion: String = ""
-    var country: String = ""
-    var state: String = ""
-    var location: String = ""
-    var brand: String = ""
-    var jobTitle: String = ""
-    var vpn: Bool = false
-    var expired: Bool = false
-    var expDate: String = ""
-    var passUpdateDate: String = ""
-    var passExpDate: String = ""
-    var locked: Bool = false
-    var disabled: Bool = false
-    var badPassCount: String = ""
-    var badPassTime: String = ""
-    var lastLogon: String = ""
-    var emailPrim: String = ""
-    var lyncVoice: Bool = false
-    var lyncNum: String = ""
-    var mfa: Bool = false
-    var daysRemaining = 0
-    var todaysDate: String = ""
-    var disconnected = false
-    var wrongID = false
-    var llBound = true
-    
+    let user = User()
     // A whole lotta labels
     @IBOutlet weak var alertImage: NSImageView!
     @IBOutlet weak var spinner: NSProgressIndicator!
@@ -61,260 +33,31 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var lockedLabel: NSTextField!
     @IBOutlet weak var hitachiLabel: NSTextField!
     @IBOutlet weak var disabledLabel: NSTextField!
-    
+
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-       alertImage.animator().alphaValue = 0.0
         
+        alertImage.animator().alphaValue = 0.0
         srchField.sendsWholeSearchString = true
-        
-        
-        
-        
-        
-            self.checkStatus()
+        self.checkStatus()
       
-        
         // Do any additional setup after loading the view.
     }
 
     
     
-    override func viewWillAppear() {
-        
-        
-    }
-    
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-    
-    
-    // Shell Directory Utility method
-    
-        @discardableResult
-        func shell(_ args: String...) -> String {
-            let task = Process()
-            task.launchPath = "/usr/bin/env"
-            task.arguments = args
-    
-            let pipe = Pipe()
-            task.standardOutput = pipe
-    
-//            DispatchQueue.global().async {
-                task.launch()
-//            }
-//            task.launch()
-//            task.waitUntilExit()
-            
-            let data = pipe.fileHandleForReading.readDataToEndOfFile()
-            
-            guard let output: String = String(data: data, encoding: .utf8) else {
-                return ""
-            }
-            
-            
-            if args[0].contains("dsconfigad") {
-                guard output.contains("global.publicisgroupe.net") else { print("UNBOUND")
-                    llBound = false
-                    fullNameLabel.stringValue = "Mac is not bound to LL!"
-                    fullNameLabel.textColor = NSColor.red
-                    jobTitleLabel.stringValue = "Bind your Mac to global.publicisgroupe.net then rerun the app"
-                    animateAlert("show")
-                    
-                    return "UNBOUND" }
-            } else if llBound {
-                guard !output.contains("read: Invalid Path") else { print ("DISCONNECTED")
-                    disconnected = true
-                    return "DISCONNECTED" }
-                guard output.contains("dsAttrTypeNative") else { print("WRONG ID")
-                    wrongID = true
-                    return "WRONG ID" }
-            }
-            
-            disconnected = false
-            wrongID = false
-            return output
-        
-        }
-
-    // Regular expression look-up method
-    
-    func regex() {
-        
-        
-        let hypPat = "(?<=hcode: )\\w{6}"
-        let namePat = "(?<=RealName:\\n )[^\\n]*"
-        let countryPat = "(?<=Native:co: )\\w+\\b"
-        let statePat = "(?<=State: )\\w+\\b"
-        let locationPat = "(?<=Street:\\n )[^\\n]*"
-        let brandPat = "(?<=Native:company: )\\w+\\b"
-        let brandPat2 = "(?<=Native:company:\\n )[^\\n]+\\b"
-        let jobPat = "(?<=JobTitle: ).*\\n(?=LastName:)"
-        let jobPat2 = "(?<=JobTitle:\\n ).*\\n(?=LastName:)"
-        let passCountPat = "(?<=badPwdCount: )\\w+\\b"
-        let emailPrimPat = "(?<=EMailAddress: )[^\\n]+"
-        let lyncNumPat = "(?<=tel:)[^\\n]+"
-        let expDatePat = "(?<=accountExpires: )\\w+\\b"
-        let passUpdatePat = "(?<=PasswordLastSet: )[^(\n)]+"
-        let badPassTimePat = "(?<=badPasswordTime: )\\w+\\b"
-        let lastLogonPat1 = "(?<=lastLogon: )\\w+\\b"
-        let lastLogonPat2 = "(?<=lastLogonTimestamp: )\\w+\\b"
-        
-        //CONVERT FROM LDAP TIME TO UNIX TIME:
-        func msToUNIX(_ input: Double) -> Double {
-            return (input / 10000000) - 11644473600
-        }
-        
-        
-        //CONVERT FROM UNIX TIME TO FORMATTED DATE:
-        
-        func formatDate(_ unix: Double) -> String {
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeStyle = .medium
-            
-            let date = Date(timeIntervalSince1970: unix)
-            
-            // US English Locale (en_US)
-            dateFormatter.locale = Locale(identifier: "en_US")
-            return dateFormatter.string(from: date)
-        }
-        
-
-        
-        
-        //REGEX PATTERN MATCHING:
-        func reg(_ pat: String) -> String {
-            var output = ""
-            let regStr = userData
-            let regex = try! NSRegularExpression(pattern: pat, options: [])
-            let matches = regex.matches(in: regStr, options: [], range: NSRange(location: 0, length: regStr.characters.count))
-            
-            
-            for match in matches {
-                for n in 0..<match.numberOfRanges {
-                    let range = match.rangeAt(n)
-                    let rstart = regStr.startIndex
-                    let r = regStr.characters.index(rstart, offsetBy: range.location) ..<
-                        regStr.characters.index(rstart, offsetBy: range.location + range.length)
-                    output = regStr.substring(with: r)
-                }
-            }
-            return output
-        }
-        
-
-        hyperion = reg(hypPat)
-        fullName = reg(namePat)
-        country = reg(countryPat)
-        state = reg(statePat)
-        location = reg(locationPat)
-        brand = reg(brandPat)
-        if brand == "" {
-            brand = reg(brandPat2)
-        }
-        jobTitle = reg(jobPat)
-        if jobTitle == "" {
-            jobTitle = reg(jobPat2)
-        }
-        vpn = userData.contains("RemoteAccessVPN")
-        if userData.contains("lockoutTime:") {
-            locked = !userData.contains("lockoutTime: 0")
-        }
-        disabled = !userData.contains(":userAccountControl: 512")
-        badPassCount = reg(passCountPat)
-        emailPrim = reg(emailPrimPat)
-//        emailProx = reg(emailProxPat)
-        lyncVoice = userData.contains("dsAttrTypeNative:msRTCSIP-Line:")
-        lyncNum = reg(lyncNumPat)
-        passUpdateDate = reg(passUpdatePat)
-        mfa = userData.contains("LionBOX-MFA")
-        let badPassInterval: Double = 0
-        let lastLogonInterval1: Double = 0
-        
-        guard let expInterval: Double = Double(reg(expDatePat)) else {
-            print("EXPDATEPAT")
-            return }
-        guard let passInterval: Double = Double(reg(passUpdatePat)) else {
-            print("PASSUPDATEPAT")
-            return }
-        
-        // PROBLEM AREA
-        if reg(badPassTimePat) != "" {
-            guard let badPassInterval: Double = Double(reg(badPassTimePat)) else {
-                print("BADPASSTIMEPAT")
-                return }
-        }
-        
-        if reg(lastLogonPat1) != "" {
-            guard let lastLogonInterval1: Double = Double(reg(lastLogonPat1)) else {
-                print("LASTLOGON")
-                return }
-        }
-        
-        guard let lastLogonInterval2: Double = Double(reg(lastLogonPat2)) else {
-            print("LASTLOGONPAT")
-            return }
-        
-        
-        
-        
-        let unixExp = msToUNIX(expInterval)
-        let unixPass = msToUNIX(passInterval)
-        let unixBadPass = msToUNIX(badPassInterval)
-        let unixToday = Date().timeIntervalSince1970
-        let unixPassExpDate = unixPass + ( 86400 * 90 )
-        daysRemaining = Int(90 - ((unixToday - unixPass) / 86400))
-        let unixLastLogon = lastLogonInterval1 > lastLogonInterval2 ? msToUNIX(lastLogonInterval1) : msToUNIX(lastLogonInterval2)
-        
-        expDate = formatDate(unixExp)
-        
-        passUpdateDate = formatDate(unixPass)
-        passExpDate = formatDate(unixPassExpDate)
-        badPassTime = formatDate(unixBadPass)
-        let lastLogonDays = Int((unixToday - unixLastLogon) / 86400)
-        switch lastLogonDays {
-        case 0...7:
-            lastLogon = "Less than a week ago"
-        case 7...30:
-            lastLogon = "Less than a month ago"
-        case 30...60:
-            lastLogon = "1 month ago"
-        case 60...90:
-            lastLogon = "2 months ago"
-        case 90...120:
-            lastLogon = "3 months ago"
-        case 120...150:
-            lastLogon = "4 months ago"
-        case 150...180:
-            lastLogon = "5 months ago"
-        case 180...210:
-            lastLogon = "Over 6 months ago"
-        default:
-            lastLogon = "Over a year ago"
-        }
-        todaysDate = formatDate(unixToday)
-        
-        
-    }
-    
     @IBAction func perfSearch(_ sender: Any) {
  
-        clearValues()
+        user.clearValues()
         spinner.isHidden = false
         spinner.startAnimation(srchField)
         let userID = srchField.stringValue
         if userID != "" {
 
-                self.userData = self.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/\(userID)")
+                user.userData = user.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/\(userID)")
             
-                self.regex()
+                user.regex()
                 self.updateLabels()
             
         }
@@ -326,13 +69,24 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     func checkStatus() {
         spinner.isHidden = false
         spinner.startAnimation(srchField)
-        self.shell("dsconfigad", "-show")
-        self.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/")
-        if disconnected {
+        user.shell("dsconfigad", "-show")
+        user.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/")
+        if user.disconnected {
             animateAlert("show")
             fullNameLabel.textColor = NSColor.red
             fullNameLabel.stringValue = "No connection!"
             jobTitleLabel.stringValue = "You must be connected to the office network, or use VPN"
+            spinner.stopAnimation(srchField)
+            spinner.isHidden = true
+            return
+        }
+        if !user.llBound {
+            fullNameLabel.stringValue = "Mac is not bound to LL!"
+            fullNameLabel.textColor = NSColor.red
+            jobTitleLabel.stringValue = "Bind your Mac to global.publicisgroupe.net then rerun the app"
+            animateAlert("show")
+            spinner.stopAnimation(srchField)
+            spinner.isHidden = true
             return
         }
         spinner.stopAnimation(srchField)
@@ -342,7 +96,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     
     
     func updateLabels() {
-        guard llBound == true else { return }
+        guard user.llBound == true else { return }
         clearLabels()
         animateAlert("hide")
         hitachiLabel.isHidden = true
@@ -350,14 +104,14 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         lockedLabel.textColor = NSColor.black
         disabledLabel.textColor = NSColor.black
         passExpLabel.textColor = NSColor.black
-        if disconnected {
+        if user.disconnected {
             animateAlert("show")
             fullNameLabel.textColor = NSColor.red
             fullNameLabel.stringValue = "No connection!"
             jobTitleLabel.stringValue = "You must be connected to the office network, or use VPN"
             return
         }
-        if wrongID {
+        if user.wrongID {
             animateAlert("show")
             fullNameLabel.stringValue = "Invalid user ID"
             fullNameLabel.textColor = NSColor.red
@@ -365,24 +119,22 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             clearLabels()
             return
         }
-
-        
-        fullNameLabel.stringValue = fullName
-        if jobTitle != "" {
-            jobTitleLabel.stringValue = jobTitle
+        fullNameLabel.stringValue = user.fullName
+        if user.jobTitle != "" {
+            jobTitleLabel.stringValue = user.jobTitle
         } else {
             jobTitleLabel.stringValue = " "
         }
-        hyperionCodeLabel.stringValue = hyperion
-        if country != "" {
-            countryLabel.stringValue = country + ", " + state
+        hyperionCodeLabel.stringValue = user.hyperion
+        if user.country != "" {
+            countryLabel.stringValue = user.country + ", " + user.state
         } else {
-            countryLabel.stringValue = state
+            countryLabel.stringValue = user.state
         }
-        locationLabel.stringValue = location
-        brandLabel.stringValue = brand
+        locationLabel.stringValue = user.location
+        brandLabel.stringValue = user.brand
       
-        if locked {
+        if user.locked {
             animateAlert("show")
             lockedLabel.stringValue = "Account is locked."
             lockedLabel.textColor = NSColor.red
@@ -391,45 +143,46 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             lockedLabel.stringValue = "Account is not locked"
         }
         
-        if disabled {
+        if user.disabled {
             animateAlert("show")
             disabledLabel.stringValue = "Account is disabled"
             disabledLabel.textColor = NSColor.red
         } else {
             disabledLabel.stringValue = "Account is not disabled"
         }
-        if !expDate.contains("30828") {
-            accExpLabel.stringValue = expDate
-        } else if disabled {
+        if !user.expDate.contains("30828") {
+            accExpLabel.stringValue = user.expDate
+        } else if user.disabled {
             accExpLabel.stringValue = "Disabled"
         } else {
             accExpLabel.stringValue = "Permanent employee"
         }
-        if daysRemaining > 0 {
-            if case 0...18 = daysRemaining {
+        if user.daysRemaining > 0 {
+            if case 0...18 = user.daysRemaining {
                 passExpLabel.textColor = NSColor.orange
             }
-            passExpLabel.stringValue = "\(daysRemaining) days left, on " + passExpDate
+            passExpLabel.stringValue = "\(user.daysRemaining) days left, on " + user.passExpDate
         } else {
-            passExpLabel.stringValue = "Expired \(-daysRemaining) days ago, on " + passExpDate
+            passExpLabel.stringValue = "Expired \(-user.daysRemaining) days ago, on " + user.passExpDate
             passExpLabel.textColor = NSColor.red
             animateAlert("show")
         }
-        if badPassCount != "" {
-            badPassLabel.stringValue = "\(badPassCount) times recently"
+        
+        if user.badPassCount != "" {
+            badPassLabel.stringValue = "\(user.badPassCount) times recently"
         } else {
             badPassLabel.stringValue = "0"
         }
-        lastLogonLabel.stringValue = lastLogon
-        emailLabel.stringValue = emailPrim
-        if vpn {
+        lastLogonLabel.stringValue = user.lastLogon
+        emailLabel.stringValue = user.emailPrim
+        if user.vpn {
             vpnLabel.stringValue = "Enabled"
         } else {
             vpnLabel.stringValue = "Disabled"
         }
         
-        if lyncVoice {
-            lyncLabel.stringValue = lyncNum
+        if user.lyncVoice {
+            lyncLabel.stringValue = user.lyncNum
             
             
             let attributes: [String: AnyObject] = [
@@ -442,7 +195,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             lyncLabel.stringValue = "Lync Voice not activated"
         }
         
-        mfaLabel.stringValue = String(mfa).capitalized
+        mfaLabel.stringValue = String(user.mfa).capitalized
         
         
     }
@@ -463,38 +216,19 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         vpnLabel.stringValue = ""
         lyncLabel.stringValue = ""
         mfaLabel.stringValue = ""
-
     }
     
-    func clearValues() {
-        jobTitle = ""
-        hyperion = ""
-        country = ""
-        state = ""
-        location = ""
-        brand = ""
-        locked = false
-        disabled = false
-        expDate = ""
-        passExpDate = ""
-        badPassCount = ""
-        lastLogon = ""
-        emailPrim = ""
-        vpn = false
-        lyncVoice = false
-        mfa = false
-    }
     
     func animateAlert(_ status: String) {
         if status == "hide" {
             NSAnimationContext.runAnimationGroup({ _ in
-                NSAnimationContext.current().duration = 0.2
+                NSAnimationContext.current().duration = 0.1
                 alertImage.animator().alphaValue = 0.0
             }, completionHandler:{
             })
         } else {
             NSAnimationContext.runAnimationGroup({ _ in
-                NSAnimationContext.current().duration = 0.2
+                NSAnimationContext.current().duration = 0.1
                 alertImage.animator().alphaValue = 1.0
             }, completionHandler:{
             })
@@ -504,16 +238,16 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBAction func clipButton(_ sender: Any) {
         let pasteboard = NSPasteboard.general()
         pasteboard.declareTypes([NSPasteboardTypeString], owner: nil)
-        let pasteboardString = "Report generated on: " + todaysDate + "\n\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue + "\nBrand: " + brandLabel.stringValue + "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA Enforced: " + mfaLabel.stringValue
+        let pasteboardString = "Report generated on: " + user.todaysDate + "\n\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue + "\nBrand: " + brandLabel.stringValue + "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA Enforced: " + mfaLabel.stringValue
         pasteboard.setString(pasteboardString, forType: NSPasteboardTypeString)
         
     }
 //      LyncCall Functionality:
     @IBAction func lyncCall(_ sender: Any) {
-        guard lyncNum != "" else { return }
-        var number = lyncNum
-        if lyncNum.contains("+") {
-            number.remove(at: lyncNum.startIndex)
+        guard user.lyncNum != "" else { return }
+        var number = user.lyncNum
+        if user.lyncNum.contains("+") {
+            number.remove(at: user.lyncNum.startIndex)
         }
         NSWorkspace.shared().open(URL(string: "tel:" + number)!)
     }
@@ -523,6 +257,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             NSWorkspace.shared().open(URL(string: "https://lion.box.com/v/LionSearchHelp")!)
         
     }
+    
     
     func shakeField(_ field: NSSearchField) {
         let animation = CAKeyframeAnimation()
@@ -536,4 +271,5 @@ class ViewController: NSViewController, NSTextFieldDelegate {
 
 
 }
+
 
