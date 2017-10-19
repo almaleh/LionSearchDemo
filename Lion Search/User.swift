@@ -88,8 +88,10 @@ class User {
         
         let hypPat = "(?<=hcode: )\\w{6}"
         let namePat = "(?<=RealName:\\n )[^\\n]*"
-        let countryPat = "(?<=Native:co: )\\w+\\b"
-        let statePat = "(?<=State: )\\w+\\b"
+        let countryPat = "(?<=Native:co: )[^\\n]+\\b"
+        let countryPat2 = "(?<=Native:co:\\n )[^\\n]+\\b"
+        let statePat = "(?<=\\bState:\\n )[^\\n]+\\b"
+        let statePat2 = "(?<=\\bState: )[^\\n]+\\b"
         let locationPat = "(?<=Street:\\n )[^\\n]*"
         let brandPat = "(?<=Native:company: )\\w+\\b"
         let brandPat2 = "(?<=Native:company:\\n )[^\\n]+\\b"
@@ -163,7 +165,13 @@ class User {
         hyperion = reg(hypPat)
         fullName = reg(namePat)
         country = reg(countryPat)
+        if country == "" {
+            country = reg(countryPat2)
+        }
         state = reg(statePat)
+        if state == "" {
+            state = reg(statePat2)
+        }
         location = reg(locationPat)
         brand = reg(brandPat)
         if brand == "" {
@@ -227,7 +235,13 @@ class User {
         let unixPassExpDate = unixPass + ( 86400 * 90 )
         daysRemaining = Int(90 - ((unixToday - unixPass) / 86400))
         let unixLastLogon = lastLogonInterval1 > lastLogonInterval2 ? msToUNIX(lastLogonInterval1) : msToUNIX(lastLogonInterval2)
-        expDate = formatDate(unixExp)
+        
+        if unixExp > 0 {
+            expDate = formatDate(unixExp)
+        } else {
+            expDate = "30828"
+        }
+        
         passUpdateDate = formatDate(unixPass)
         passExpDate = formatDateOnly(unixPassExpDate)
         badPassTime = formatDate(unixBadPass)

@@ -7,15 +7,16 @@
 //
 
 import Cocoa
-
+//
 //@IBDesignable
 //class LyncCall: NSTextField {
 //    @IBInspectable var href: String = ""
 //
-//    var number = user.lyncNum
+//    var user: User?
+//    let number = user.lynNum
 //    guard lyncNum != "" else { return }
 //    var number: String = ""
-//    number = user.lyncNum
+//    
 //    if number.contains("+") {
 //    number.remove(at: number.startIndex)
 //    }

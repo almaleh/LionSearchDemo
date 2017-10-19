@@ -127,7 +127,12 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         }
         hyperionCodeLabel.stringValue = user.hyperion
         if user.country != "" {
-            countryLabel.stringValue = user.country + ", " + user.state
+            if user.state != "" {
+                countryLabel.stringValue = user.country + ", " + user.state
+            }
+            else {
+                countryLabel.stringValue = user.country
+            }
         } else {
             countryLabel.stringValue = user.state
         }
