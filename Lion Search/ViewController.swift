@@ -188,12 +188,10 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         
         if user.lyncVoice {
             lyncLabel.stringValue = user.lyncNum
+
             
-            
-            let attributes: [String: AnyObject] = [
-                NSForegroundColorAttributeName: NSColor.blue,
-                NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue as AnyObject
-            ]
+            let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.foregroundColor: NSColor.blue,
+                NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
             lyncLabel.attributedStringValue = NSAttributedString(string: lyncLabel.stringValue, attributes: attributes)
             
         } else {
@@ -227,13 +225,13 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     func animateAlert(_ status: String) {
         if status == "hide" {
             NSAnimationContext.runAnimationGroup({ _ in
-                NSAnimationContext.current().duration = 0.1
+                NSAnimationContext.current.duration = 0.1
                 alertImage.animator().alphaValue = 0.0
             }, completionHandler:{
             })
         } else {
             NSAnimationContext.runAnimationGroup({ _ in
-                NSAnimationContext.current().duration = 0.1
+                NSAnimationContext.current.duration = 0.1
                 alertImage.animator().alphaValue = 1.0
             }, completionHandler:{
             })
@@ -241,10 +239,10 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     }
     
     @IBAction func clipButton(_ sender: Any) {
-        let pasteboard = NSPasteboard.general()
-        pasteboard.declareTypes([NSPasteboardTypeString], owner: nil)
+        let pasteboard = NSPasteboard.general
+        pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
         let pasteboardString = "Report generated on: " + user.todaysDate + "\n\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue + "\nBrand: " + brandLabel.stringValue + "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA Enforced: " + mfaLabel.stringValue
-        pasteboard.setString(pasteboardString, forType: NSPasteboardTypeString)
+        pasteboard.setString(pasteboardString, forType: NSPasteboard.PasteboardType.string)
         
     }
 //      LyncCall Functionality:
@@ -254,12 +252,12 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         if user.lyncNum.contains("+") {
             number.remove(at: user.lyncNum.startIndex)
         }
-        NSWorkspace.shared().open(URL(string: "tel:" + number)!)
+        NSWorkspace.shared.open(URL(string: "tel:" + number)!)
     }
     
     @IBAction func helpBtn(_ sender: Any) {
 
-            NSWorkspace.shared().open(URL(string: "https://lion.box.com/v/LionSearchHelp")!)
+            NSWorkspace.shared.open(URL(string: "https://lion.box.com/v/LionSearchHelp")!)
         
     }
     

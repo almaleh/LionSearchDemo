@@ -151,7 +151,7 @@ class User {
             
             for match in matches {
                 for n in 0..<match.numberOfRanges {
-                    let range = match.rangeAt(n)
+                    let range = match.range(at: n)
                     let rstart = regStr.startIndex
                     let r = regStr.characters.index(rstart, offsetBy: range.location) ..<
                         regStr.characters.index(rstart, offsetBy: range.location + range.length)

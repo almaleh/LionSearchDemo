@@ -15,14 +15,13 @@ class HyperTextField: NSTextField {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let attributes: [String: AnyObject] = [
-            NSForegroundColorAttributeName: NSColor.blue,
-            NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue as AnyObject
-        ]
+        let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.foregroundColor: NSColor.blue,
+                                                        NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
         self.attributedStringValue = NSAttributedString(string: self.stringValue, attributes: attributes)
+
     }
     
     override func mouseDown(with event: NSEvent) {
-        NSWorkspace.shared().open(URL(string: self.href)!)
+        NSWorkspace.shared.open(URL(string: self.href)!)
     }
 }
