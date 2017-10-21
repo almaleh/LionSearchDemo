@@ -13,6 +13,8 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     
     let user = User()
     // A whole lotta labels
+    @IBOutlet weak var creativeCloud: NSImageView!
+    @IBOutlet weak var acrobat: NSImageView!
     @IBOutlet weak var alertImage: NSImageView!
     @IBOutlet weak var spinner: NSProgressIndicator!
     @IBOutlet weak var srchField: NSSearchField!
@@ -92,8 +94,6 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         spinner.stopAnimation(srchField)
         spinner.isHidden = true
     }
-    
-    
     
     func updateLabels() {
         guard user.llBound == true else { return }
@@ -199,7 +199,17 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         }
         
         mfaLabel.stringValue = String(user.mfa).capitalized
-
+        if user.creativeCloud {
+            creativeCloud.image = NSImage(named: NSImage.Name(rawValue: "NSStatusAvailable"))
+            acrobat.image = NSImage(named: NSImage.Name(rawValue: "NSStatusAvailable"))
+        } else if user.acrobat {
+            creativeCloud.image = NSImage(named: NSImage.Name(rawValue: "NSStatusUnavailable"))
+            acrobat.image = NSImage(named: NSImage.Name(rawValue: "NSStatusAvailable"))
+        } else {
+            creativeCloud.image = NSImage(named: NSImage.Name(rawValue: "NSStatusUnavailable"))
+            acrobat.image = NSImage(named: NSImage.Name(rawValue: "NSStatusUnavailable"))
+        }
+        
     }
     
     func clearLabels() {
@@ -218,6 +228,8 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         vpnLabel.stringValue = ""
         lyncLabel.stringValue = ""
         mfaLabel.stringValue = ""
+        creativeCloud.image = NSImage(named: NSImage.Name(rawValue: "NSStatusNone"))
+        acrobat.image = NSImage(named: NSImage.Name(rawValue: "NSStatusNone"))
     }
     
     
@@ -240,9 +252,8 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBAction func clipButton(_ sender: Any) {
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-        let pasteboardString = "Report generated on: " + user.todaysDate + "\n\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue + "\nBrand: " + brandLabel.stringValue + "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA Enforced: " + mfaLabel.stringValue
+        let pasteboardString = "Report generated on: " + user.todaysDate + "\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue + "\nBrand: " + brandLabel.stringValue + "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA Enforced: " + mfaLabel.stringValue + "\nCreative Cloud: \(user.creativeCloud)" + "\nAcrobat: \(user.acrobat)"
         pasteboard.setString(pasteboardString, forType: NSPasteboard.PasteboardType.string)
-        
     }
 //      LyncCall Functionality:
     @IBAction func lyncCall(_ sender: Any) {

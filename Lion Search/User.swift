@@ -39,8 +39,9 @@ class User {
     var disconnected = false
     var wrongID = false
     var llBound = true
+    var creativeCloud = false
+    var acrobat = false
     
-   
     @discardableResult
     func shell(_ args: String...) -> String {
         let task = Process()
@@ -233,7 +234,14 @@ class User {
         lyncNum = reg(lyncNumPat)
         passUpdateDate = reg(passUpdatePat)
         mfa = userData.contains("LionBOX-MFA")
-
+        creativeCloud = userData.contains("ADOBE-CC")
+        
+        if creativeCloud {
+            acrobat = true
+        } else {
+            acrobat = userData.contains("ACROBAT")
+        }
+        
         if let opt = Double(reg(passUpdatePat)) {
             passInterval = opt
         } else {
@@ -303,6 +311,7 @@ class User {
     }
     
     func clearValues() {
+        
         jobTitle = ""
         hyperion = ""
         country = ""
