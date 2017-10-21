@@ -12,6 +12,7 @@ class User {
     
     var username: String = ""
     var userData: String = ""
+    var userData2: String = ""
     var fullName: String = ""
     var hyperion: String = ""
     var country: String = ""
@@ -56,6 +57,10 @@ class User {
         //            task.waitUntilExit()
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        
+//        guard let output: String = String(data: data.subdata(in: 0 ..< data.count - 1), encoding: .utf8) else {
+//            return ""
+//        }
         
         guard let output: String = String(data: data, encoding: .utf8) else {
             return ""
@@ -161,6 +166,42 @@ class User {
             return output
         }
         
+        // VARS FOR TIME-BASED REGEX BEFORE BUSINESS CATEGORY CHECK
+        
+        var badPassInterval: Double = 0
+        var lastLogonInterval1: Double = 0
+        var lastLogonInterval2: Double = 0
+        var expInterval: Double = 0
+        var passInterval: Double = 0
+        
+        badPassCount = reg(passCountPat)
+        
+        
+        if let opt = Double(reg(expDatePat)) {
+            expInterval = opt
+        } else {
+            print("EXPDATEPAT")
+        }
+        
+        if let opt = Double(reg(badPassTimePat)) {
+            badPassInterval = opt
+        } else {
+            print("BADPASSTIMEPAT")
+        }
+        
+        
+        
+        // CHECK FOR NULL CHARACTERS IN BUSINESS CATEGORY
+        
+        if userData.contains("\nRemoteAccessVPN") {
+            if let range = userData.range(of: "\nRemoteAccessVPN") {
+                userData = String(userData[range.upperBound...])
+                print(userData2)
+                
+            }
+        }
+        
+        
         
         hyperion = reg(hypPat)
         fullName = reg(namePat)
@@ -186,35 +227,19 @@ class User {
             locked = !userData.contains("lockoutTime: 0")
         }
         disabled = !userData.contains(":userAccountControl: 512")
-        badPassCount = reg(passCountPat)
+        
         emailPrim = reg(emailPrimPat)
         lyncVoice = userData.contains("dsAttrTypeNative:msRTCSIP-Line:")
         lyncNum = reg(lyncNumPat)
         passUpdateDate = reg(passUpdatePat)
         mfa = userData.contains("LionBOX-MFA")
-        var badPassInterval: Double = 0
-        var lastLogonInterval1: Double = 0
-        var lastLogonInterval2: Double = 0
-        var expInterval: Double = 0
-        var passInterval: Double = 0
-        
-        if let opt = Double(reg(expDatePat)) {
-            expInterval = opt
-        } else {
-            print("EXPDATEPAT")
-        }
-        
+
         if let opt = Double(reg(passUpdatePat)) {
             passInterval = opt
         } else {
             print("PASSUPDATEPAT")
         }
         
-        if let opt = Double(reg(badPassTimePat)) {
-            badPassInterval = opt
-        } else {
-            print("BADPASSTIMEPAT")
-        }
         
         if let opt = Double(reg(lastLogonPat1)) {
             lastLogonInterval1 = opt
@@ -273,6 +298,8 @@ class User {
             lastLogon = "Over four years ago"
         }
         todaysDate = formatDate(unixToday)
+        
+        
     }
     
     func clearValues() {

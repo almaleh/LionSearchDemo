@@ -199,8 +199,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         }
         
         mfaLabel.stringValue = String(user.mfa).capitalized
-        
-        
+
     }
     
     func clearLabels() {
