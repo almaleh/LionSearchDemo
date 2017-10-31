@@ -7,11 +7,11 @@
 //
 
 import Cocoa
-
+let user = User()
 
 class ViewController: NSViewController, NSTextFieldDelegate {
     
-    let user = User()
+    
     // A whole lotta labels
     @IBOutlet weak var creativeCloud: NSImageView!
     @IBOutlet weak var acrobat: NSImageView!
@@ -120,6 +120,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             return
         }
         fullNameLabel.stringValue = user.fullName
+        
         if user.jobTitle != "" {
             jobTitleLabel.stringValue = user.jobTitle
         } else {
