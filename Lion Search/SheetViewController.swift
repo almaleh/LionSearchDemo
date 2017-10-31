@@ -22,18 +22,20 @@ class SheetViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
+        for group in user.groups {
+            print(group)
+        }
         // Do view setup here.
     }
     
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return 5
+        return user.groups.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String = ""
-        
-        text = "Smarm"
+        text = user.groups[row]
         let ADCell = NSUserInterfaceItemIdentifier("ADGroupCell")
         if let cell = tableView.makeView(withIdentifier: ADCell, owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text

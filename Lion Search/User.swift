@@ -41,6 +41,8 @@ class User {
     var llBound = true
     var creativeCloud = false
     var acrobat = false
+    var groupList = ""
+    var groups = [String]()
     
     @discardableResult
     func shell(_ args: String...) -> String {
@@ -59,9 +61,9 @@ class User {
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         
-//        guard let output: String = String(data: data.subdata(in: 0 ..< data.count - 1), encoding: .utf8) else {
-//            return ""
-//        }
+        //        guard let output: String = String(data: data.subdata(in: 0 ..< data.count - 1), encoding: .utf8) else {
+        //            return ""
+        //        }
         
         guard let output: String = String(data: data, encoding: .utf8) else {
             return ""
@@ -87,7 +89,7 @@ class User {
         
     }
     
-    // Regular expression look-up method
+    //MARK: - Regular expression look-up method
     
     func regex() {
         
@@ -111,14 +113,15 @@ class User {
         let badPassTimePat = "(?<=badPasswordTime: )\\w+\\b"
         let lastLogonPat1 = "(?<=lastLogon: )\\w+\\b"
         let lastLogonPat2 = "(?<=lastLogonTimestamp: )\\w+\\b"
+        let groupListPat = "(?<=memberOf:\\n )[^*]*?(?=\\ndsAttrTypeNative)"
+        let groupMemberPat = "(?<=CN=)[^,]+(?=,)"
         
-        //CONVERT FROM LDAP TIME TO UNIX TIME:
+        //MARK: - CONVERT FROM LDAP TIME TO UNIX TIME:
         func msToUNIX(_ input: Double) -> Double {
             return (input / 10000000) - 11644473600
         }
         
-        
-        //CONVERT FROM UNIX TIME TO FORMATTED DATE:
+        //MARK: - CONVERT FROM UNIX TIME TO FORMATTED DATE:
         
         func formatDate(_ unix: Double) -> String {
             
@@ -147,7 +150,7 @@ class User {
         }
         
         
-        //REGEX PATTERN MATCHING:
+        //MARK: - REGEX PATTERN MATCHING:
         func reg(_ pat: String) -> String {
             var output = ""
             let regStr = userData
@@ -167,7 +170,28 @@ class User {
             return output
         }
         
-        // VARS FOR TIME-BASED REGEX BEFORE BUSINESS CATEGORY CHECK
+        //MARK: - REGEX PATTERN FOR MEMBER GROUPS:
+        
+        func regGroup(_ pat: String, regStr: String) -> [String] {
+            var output = ""
+            let regex = try! NSRegularExpression(pattern: pat, options: [])
+            let matches = regex.matches(in: regStr, options: [], range: NSRange(location: 0, length: regStr.characters.count))
+            
+            
+            for match in matches {
+                for n in 0..<match.numberOfRanges {
+                    let range = match.range(at: n)
+                    let rstart = regStr.startIndex
+                    let r = regStr.characters.index(rstart, offsetBy: range.location) ..<
+                        regStr.characters.index(rstart, offsetBy: range.location + range.length)
+                    output = regStr.substring(with: r)
+                    groups.append(output)
+                }
+            }
+            return groups
+        }
+        
+        //MARK: - VARS FOR TIME-BASED REGEX BEFORE BUSINESS CATEGORY CHECK
         
         var badPassInterval: Double = 0
         var lastLogonInterval1: Double = 0
@@ -192,7 +216,7 @@ class User {
         
         
         
-        // CHECK FOR NULL CHARACTERS IN BUSINESS CATEGORY
+        //MARK: - CHECK FOR NULL CHARACTERS IN BUSINESS CATEGORY
         
         if userData.contains("\nRemoteAccessVPN") {
             if let range = userData.range(of: "\nRemoteAccessVPN") {
@@ -202,8 +226,9 @@ class User {
             }
         }
         
-        
-        
+        groupList = reg(groupListPat)
+        groups = regGroup(groupMemberPat, regStr: groupList)
+        groups.sort()
         hyperion = reg(hypPat)
         fullName = reg(namePat)
         country = reg(countryPat)
@@ -332,3 +357,4 @@ class User {
     
     
 }
+

@@ -1173,7 +1173,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="04b-Em-Ckt" userLabel="Sheet segue">
                                 <rect key="frame" x="75" y="22" width="29" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" image="buttonCell:HVx-1I-6IF:image" imagePosition="only" alignment="center" borderStyle="border" allowsMixedState="YES" inset="2" id="HVx-1I-6IF">
+                                <buttonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" image="buttonCell:HVx-1I-6IF:image" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" allowsMixedState="YES" inset="2" id="HVx-1I-6IF">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -1189,11 +1189,13 @@
                         <outlet property="alertImage" destination="stf-w3-UCu" id="IpV-Jn-PPG"/>
                         <outlet property="badPassLabel" destination="jRr-Yb-DZH" id="TVr-yD-pMf"/>
                         <outlet property="brandLabel" destination="oIQ-dy-8Wh" id="PVN-GQ-rhf"/>
+                        <outlet property="copyBtn" destination="EyF-tP-ckT" id="kVl-OJ-qXn"/>
                         <outlet property="countryLabel" destination="GjC-am-g3Q" id="P0p-3N-tve"/>
                         <outlet property="creativeCloud" destination="VLs-pc-IQl" id="XSe-cp-G61"/>
                         <outlet property="disabledLabel" destination="Xoe-tV-9XT" id="iH3-C6-oQb"/>
                         <outlet property="emailLabel" destination="y51-mW-9pu" id="1pf-3J-XeZ"/>
                         <outlet property="fullNameLabel" destination="IPE-3i-246" id="L7g-Du-BIp"/>
+                        <outlet property="groupsBtn" destination="04b-Em-Ckt" id="JEe-1s-Drt"/>
                         <outlet property="hitachiLabel" destination="nsP-PY-0mU" id="Fga-dg-Qdz"/>
                         <outlet property="hyperionCodeLabel" destination="CfB-9N-xg7" id="4rb-gz-5hp"/>
                         <outlet property="jobTitleLabel" destination="68c-Rm-rc8" id="dIY-YS-cz3"/>
@@ -1227,20 +1229,20 @@
                                     <rect key="frame" x="1" y="1" width="288" height="421"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" enabled="NO" rowSizeStyle="automatic" viewBased="YES" id="7eX-8f-prZ">
+                                        <tableView autoresizesSubviews="NO" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="7eX-8f-prZ">
                                             <rect key="frame" x="0.0" y="0.0" width="288" height="421"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="" width="285" minWidth="10" maxWidth="3.4028234663852886e+38" id="sfs-m9-Y5j">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" enabled="NO" borderStyle="border" alignment="left">
+                                                <tableColumn identifier="ADGroupsColumn" width="285" minWidth="10" maxWidth="3.4028234663852886e+38" id="sfs-m9-Y5j">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" enabled="NO" alignment="left" title="Text Cell" id="CNi-d5-Nxa">
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="CNi-d5-Nxa">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1254,7 +1256,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JFx-mj-yQy">
                                                                     <rect key="frame" x="0.0" y="0.0" width="285" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="mvJ-Yc-pYO">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="mvJ-Yc-pYO">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1273,7 +1275,7 @@
                                     <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="4qI-2M-x9u">
-                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <rect key="frame" x="-100" y="-100" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="BZQ-6W-UUF">
@@ -1291,7 +1293,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ps3-Tf-3Sp">
-                                <rect key="frame" x="18" y="513" width="294" height="17"/>
+                                <rect key="frame" x="18" y="511" width="294" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Besher Al Maleh" placeholderString="Name" id="IT6-Dz-LIU">
                                     <font key="font" metaFont="systemMedium" size="16"/>

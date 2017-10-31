@@ -35,7 +35,9 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var lockedLabel: NSTextField!
     @IBOutlet weak var hitachiLabel: NSTextField!
     @IBOutlet weak var disabledLabel: NSTextField!
-
+    @IBOutlet weak var groupsBtn: NSButton!
+    @IBOutlet weak var copyBtn: NSButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -210,7 +212,8 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             creativeCloud.image = NSImage(named: NSImage.Name(rawValue: "NSStatusUnavailable"))
             acrobat.image = NSImage(named: NSImage.Name(rawValue: "NSStatusUnavailable"))
         }
-        
+        copyBtn.isEnabled = true
+        groupsBtn.isEnabled = true
     }
     
     func clearLabels() {
@@ -231,6 +234,8 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         mfaLabel.stringValue = ""
         creativeCloud.image = NSImage(named: NSImage.Name(rawValue: "NSStatusNone"))
         acrobat.image = NSImage(named: NSImage.Name(rawValue: "NSStatusNone"))
+        copyBtn.isEnabled = false
+        groupsBtn.isEnabled = false
     }
     
     
