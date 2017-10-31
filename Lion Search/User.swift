@@ -43,6 +43,7 @@ class User {
     var acrobat = false
     var groupList = ""
     var groups = [String]()
+    var city = ""
     
     @discardableResult
     func shell(_ args: String...) -> String {
@@ -115,6 +116,8 @@ class User {
         let lastLogonPat2 = "(?<=lastLogonTimestamp: )\\w+\\b"
         let groupListPat = "(?<=memberOf:\\n )[^*]*?(?=\\ndsAttrTypeNative)"
         let groupMemberPat = "(?<=CN=)[^,]+(?=,)"
+        let cityPat = "(?<=\\City:\\n )[^\\n]+\\b"
+        let cityPat2 = "(?<=\\City: )[^\\n]+\\b"
         
         //MARK: - CONVERT FROM LDAP TIME TO UNIX TIME:
         func msToUNIX(_ input: Double) -> Double {
@@ -226,6 +229,11 @@ class User {
             }
         }
         
+        city = reg(cityPat)
+        if city == "" {
+            city = reg(cityPat2)
+        }
+        print(city)
         groupList = reg(groupListPat)
         groups = regGroup(groupMemberPat, regStr: groupList)
         groups.sort()
@@ -355,6 +363,7 @@ class User {
         mfa = false
         groups = []
         username = ""
+        city = ""
     }
     
     

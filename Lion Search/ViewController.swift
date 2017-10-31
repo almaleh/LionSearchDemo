@@ -129,16 +129,37 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             jobTitleLabel.stringValue = " "
         }
         hyperionCodeLabel.stringValue = user.hyperion
-        if user.country != "" {
-            if user.state != "" {
-                countryLabel.stringValue = user.country + ", " + user.state
-            }
-            else {
-                countryLabel.stringValue = user.country
-            }
-        } else {
-            countryLabel.stringValue = user.state
+        
+        var possCity = ""
+        if user.city != "" {
+            possCity = ", \(user.city)"
         }
+        var possState = ""
+        if user.state != "" {
+            possState = ", \(user.state)"
+        }
+        
+        if user.country != "" {
+            countryLabel.stringValue = user.country + possState + possCity
+        } else if user.state != "" {
+            countryLabel.stringValue = user.state + possCity
+        } else {
+            countryLabel.stringValue = user.city
+        }
+        
+        
+        
+        
+//        if user.country != "" {
+//            if user.state != "" {
+//                countryLabel.stringValue = user.country + ", " + user.state
+//            }
+//            else {
+//                countryLabel.stringValue = user.country
+//            }
+//        } else {
+//            countryLabel.stringValue = user.state
+//        }
         locationLabel.stringValue = user.location
         brandLabel.stringValue = user.brand
       
@@ -263,7 +284,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBAction func clipButton(_ sender: Any) {
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-        let pasteboardString = "Report generated on: " + user.todaysDate + "\nUsername: " + srchField.stringValue + "\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue + "\nBrand: " + brandLabel.stringValue + "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA (LionBox): " + mfaLabel.stringValue + "\nCreative Cloud: \(String(user.creativeCloud).capitalized)" + "\nAcrobat: \(String(user.acrobat).capitalized)"
+        let pasteboardString = "Report generated on: " + user.todaysDate + "\n\nUsername: " + srchField.stringValue + "\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue + "\nBrand: " + brandLabel.stringValue + "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA (LionBox): " + mfaLabel.stringValue + "\nCreative Cloud: \(String(user.creativeCloud).capitalized)" + "\nAcrobat: \(String(user.acrobat).capitalized)"
         pasteboard.setString(pasteboardString, forType: NSPasteboard.PasteboardType.string)
     }
 //      LyncCall Functionality:
