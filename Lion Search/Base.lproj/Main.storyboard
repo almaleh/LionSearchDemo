@@ -728,7 +728,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nsP-PY-0mU" customClass="HyperTextField" customModule="Lion_Search" customModuleProvider="target">
-                                <rect key="frame" x="243" y="333" width="140" height="17"/>
+                                <rect key="frame" x="243" y="332" width="140" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Click here to unlock" id="Ok5-fy-jnX">
                                     <font key="font" metaFont="system"/>
