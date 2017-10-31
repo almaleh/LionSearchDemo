@@ -13,19 +13,25 @@ class SheetViewController: NSViewController, NSTableViewDataSource, NSTableViewD
     
     @IBOutlet weak var fullNameLabel: NSTextField!
     
+    @IBOutlet weak var groupNumberLabel: NSTextField!
     @IBOutlet weak var tableView: NSTableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fullNameLabel.stringValue = user.fullName
-        
+        groupNumberLabel.stringValue = "is a member of \(user.groups.count) AD groups:"
+//        self.preferredContentSize = view.frame.size
+//        self.view.autoresizesSubviews = false
+//        self.view.window?.styleMask.remove(NSWindow.StyleMask.resizable)
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
-        for group in user.groups {
-            print(group)
-        }
         // Do view setup here.
+    }
+    
+    override func viewDidAppear() {
+        view.window!.styleMask.remove(NSWindow.StyleMask.resizable)
     }
     
     
@@ -43,5 +49,19 @@ class SheetViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         }
         return nil
     }
+    
+    @IBAction func clipBtn(_ sender: Any) {
+        
+        let pasteboard = NSPasteboard.general
+        pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+        var pasteboardString = "Report generated on: " + user.todaysDate + "\nUsername: " + user.username + "\nFull name: " + user.fullName + "\nJob title: " + user.jobTitle + "\nMember of the following AD groups:\n\n"
+        for group in user.groups {
+            pasteboardString += group
+            pasteboardString += "\n"
+        }
+        pasteboard.setString(pasteboardString, forType: NSPasteboard.PasteboardType.string)
+    }
+        
+    
     
 }

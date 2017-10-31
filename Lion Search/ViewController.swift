@@ -56,10 +56,10 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         user.clearValues()
         spinner.isHidden = false
         spinner.startAnimation(srchField)
-        let userID = srchField.stringValue
-        if userID != "" {
+        user.username = srchField.stringValue
+        if user.username != "" {
 
-                user.userData = user.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/\(userID)")
+                user.userData = user.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/\(user.username)")
             
                 user.regex()
                 self.updateLabels()
@@ -201,7 +201,12 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             lyncLabel.stringValue = "Lync Voice not activated"
         }
         
-        mfaLabel.stringValue = String(user.mfa).capitalized
+        if user.mfa {
+            mfaLabel.stringValue = "Enforced"
+        } else {
+            mfaLabel.stringValue = "Not enforced" 
+        }
+        
         if user.creativeCloud {
             creativeCloud.image = NSImage(named: NSImage.Name(rawValue: "NSStatusAvailable"))
             acrobat.image = NSImage(named: NSImage.Name(rawValue: "NSStatusAvailable"))
@@ -258,7 +263,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBAction func clipButton(_ sender: Any) {
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-        let pasteboardString = "Report generated on: " + user.todaysDate + "\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue + "\nBrand: " + brandLabel.stringValue + "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA Enforced: " + mfaLabel.stringValue + "\nCreative Cloud: \(user.creativeCloud)" + "\nAcrobat: \(user.acrobat)"
+        let pasteboardString = "Report generated on: " + user.todaysDate + "\nUsername: " + srchField.stringValue + "\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue + "\nBrand: " + brandLabel.stringValue + "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA (LionBox): " + mfaLabel.stringValue + "\nCreative Cloud: \(String(user.creativeCloud).capitalized)" + "\nAcrobat: \(String(user.acrobat).capitalized)"
         pasteboard.setString(pasteboardString, forType: NSPasteboard.PasteboardType.string)
     }
 //      LyncCall Functionality:

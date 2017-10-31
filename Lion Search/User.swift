@@ -353,6 +353,8 @@ class User {
         vpn = false
         lyncVoice = false
         mfa = false
+        groups = []
+        username = ""
     }
     
     
