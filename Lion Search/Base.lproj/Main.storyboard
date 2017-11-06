@@ -1181,12 +1181,73 @@
                                     <action selector="clipButton:" target="XfG-lQ-9wD" id="1lV-qA-U8e"/>
                                 </connections>
                             </button>
+                            <scrollView hidden="YES" fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BqB-uc-YI0" userLabel="AutoCompleteScrollView">
+                                <rect key="frame" x="161" y="438" width="117" height="97"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <clipView key="contentView" ambiguous="YES" id="Lyo-w8-HGz">
+                                    <rect key="frame" x="1" y="1" width="115" height="95"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="ubg-sm-W6t">
+                                            <rect key="frame" x="0.0" y="0.0" width="115" height="95"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <size key="intercellSpacing" width="3" height="2"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn width="112" minWidth="40" maxWidth="1000" id="Cmq-HN-Kx4">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="IId-DD-dog">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView identifier="cell" id="Etu-vA-8TA">
+                                                            <rect key="frame" x="1" y="1" width="116" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avA-hS-HvB">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="116" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="ABQ-5o-Sos">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outlet property="textField" destination="avA-hS-HvB" id="KCD-ie-CbF"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                        </tableView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="S3b-WB-M0G">
+                                    <rect key="frame" x="-100" y="-100" width="115" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="qh8-xv-HFk">
+                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="accExpLabel" destination="qHU-Ht-Qvf" id="sen-8S-dHd"/>
                         <outlet property="acrobat" destination="zTK-Y3-ROu" id="uBP-nv-6ZQ"/>
                         <outlet property="alertImage" destination="stf-w3-UCu" id="IpV-Jn-PPG"/>
+                        <outlet property="autoCompleteScrollView" destination="BqB-uc-YI0" id="Mqu-cq-9rH"/>
                         <outlet property="badPassLabel" destination="jRr-Yb-DZH" id="TVr-yD-pMf"/>
                         <outlet property="brandLabel" destination="oIQ-dy-8Wh" id="PVN-GQ-rhf"/>
                         <outlet property="copyBtn" destination="EyF-tP-ckT" id="kVl-OJ-qXn"/>
@@ -1207,6 +1268,7 @@
                         <outlet property="passExpLabel" destination="oMR-wf-JGi" id="kFG-5z-hou"/>
                         <outlet property="spinner" destination="ilF-ih-ioi" id="Hru-da-ct5"/>
                         <outlet property="srchField" destination="xcP-av-LaV" id="18d-py-lfa"/>
+                        <outlet property="tableView" destination="ubg-sm-W6t" id="ehd-NO-3De"/>
                         <outlet property="vpnLabel" destination="MB7-cE-KE6" id="iYK-Ir-8Tg"/>
                     </connections>
                 </viewController>

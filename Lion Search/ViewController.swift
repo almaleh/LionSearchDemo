@@ -9,11 +9,13 @@
 import Cocoa
 let user = User()
 
-class ViewController: NSViewController, NSTextFieldDelegate {
+class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate, NSTableViewDataSource, NSSearchFieldDelegate {
     
     
     // A whole lotta labels
+    @IBOutlet weak var autoCompleteScrollView: NSScrollView!
     @IBOutlet weak var creativeCloud: NSImageView!
+    @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var acrobat: NSImageView!
     @IBOutlet weak var alertImage: NSImageView!
     @IBOutlet weak var spinner: NSProgressIndicator!
@@ -37,14 +39,36 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var disabledLabel: NSTextField!
     @IBOutlet weak var groupsBtn: NSButton!
     @IBOutlet weak var copyBtn: NSButton!
-    
+    var displayedUsers = [String]()
+    var usersArray = [String]()
+    var users = Set<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        if #available(OSX 10.11, *) {
+            srchField.delegate = self
+        } else {
+            // Fallback on earlier versions
+        }
+        autoCompleteScrollView.isHidden = true
+        tableView.target = self
+        tableView.action = #selector(tableViewDidClick)
         
         alertImage.animator().alphaValue = 0.0
-        srchField.sendsWholeSearchString = true
+//        srchField.sendsWholeSearchString = true
         self.checkStatus()
+        
+        DispatchQueue.global().async {
+            [unowned self] in
+            if let url = URL(string: "https://lion.box.com/shared/static/fqe8q5qgf9toq2jewsfnt3d3wiu4cn08.txt") {
+                if let list = try? String(contentsOf: (url)) {
+                    self.usersArray = list.components(separatedBy: "\n")
+                    self.users = Set(self.usersArray)
+                }
+            }
+        }
       
         // Do any additional setup after loading the view.
     }
@@ -52,21 +76,9 @@ class ViewController: NSViewController, NSTextFieldDelegate {
     
     
     @IBAction func perfSearch(_ sender: Any) {
- 
-        user.clearValues()
-        spinner.isHidden = false
-        spinner.startAnimation(srchField)
-        user.username = srchField.stringValue
-        if user.username != "" {
-
-                user.userData = user.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/\(user.username)")
-            
-                user.regex()
-                self.updateLabels()
-            
-        }
-        spinner.stopAnimation(srchField)
-        spinner.isHidden = true
+        autoComplete()
+        search()
+//        autoCompleteScrollView.isHidden = true
     }
     
     // Checks for LL domain bind and internet connection upon launch
@@ -147,19 +159,6 @@ class ViewController: NSViewController, NSTextFieldDelegate {
             countryLabel.stringValue = user.city
         }
         
-        
-        
-        
-//        if user.country != "" {
-//            if user.state != "" {
-//                countryLabel.stringValue = user.country + ", " + user.state
-//            }
-//            else {
-//                countryLabel.stringValue = user.country
-//            }
-//        } else {
-//            countryLabel.stringValue = user.state
-//        }
         locationLabel.stringValue = user.location
         brandLabel.stringValue = user.brand
       
@@ -281,6 +280,8 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         }
     }
     
+    //MARK: - CLIPBOARD
+    
     @IBAction func clipButton(_ sender: Any) {
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
@@ -303,6 +304,73 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         
     }
     
+    //MARK: - AUTO COMPLETE FUNCTION
+    
+    func autoComplete() {
+        guard srchField.stringValue.count > 1 && !users.isEmpty else {
+            autoCompleteScrollView.isHidden = true
+            return }
+        autoCompleteScrollView.isHidden = false
+        displayedUsers.removeAll()
+        let searchValue = srchField.stringValue.lowercased()
+        for word in self.users {
+            if word.lowercased().hasPrefix(searchValue) {
+                self.displayedUsers.append(word)
+            }
+        }
+        tableView.reloadData()
+    }
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return displayedUsers.count
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        let ADCell = NSUserInterfaceItemIdentifier("cell")
+        if let cell = tableView.makeView(withIdentifier: ADCell, owner: nil) as? NSTableCellView {
+            cell.textField?.stringValue = displayedUsers[row]
+            return cell
+        }
+        return nil
+    }
+    
+    //MARK: - CLICK ON AUTO-COMPLETE
+    
+    @objc func tableViewDidClick(){
+        let row = tableView.clickedRow
+        let column = tableView.clickedColumn
+        let unselected = -1
+        
+        if row == unselected && column == unselected{
+            tableViewDidDeselectRow()
+            return
+        }else if row != unselected && column != unselected{
+            tableViewDidSelectRow(row)
+            return
+        }else if column != unselected && row == unselected{
+            tableviewDidSelectHeader(column)
+        }
+    }
+    
+    private func tableViewDidDeselectRow() {
+        // clicked outside row
+    }
+    
+    private func tableViewDidSelectRow(_ row : Int){
+        srchField.stringValue = displayedUsers[row]
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+            self.srchField.stringValue = self.srchField.stringValue.replacingOccurrences(of: "\r", with: "")
+            self.search()
+            self.autoCompleteScrollView.isHidden = true
+        }
+    }
+    
+    private func tableviewDidSelectHeader(_ column : Int){
+        // header did select
+    }
+    
+    //MARK: - Shake Animation
     
     func shakeField(_ field: NSSearchField) {
         let animation = CAKeyframeAnimation()
@@ -314,6 +382,24 @@ class ViewController: NSViewController, NSTextFieldDelegate {
         field.layer?.add(animation, forKey: "shake")
     }
 
+    func search() {
+        guard srchField.stringValue.count >= 4 else { return }
+        user.clearValues()
+        spinner.isHidden = false
+        spinner.startAnimation(srchField)
+        user.username = srchField.stringValue
+        if user.username != "" {
+            
+            user.userData = user.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/\(user.username)")
+            
+            user.regex()
+            self.updateLabels()
+            
+        }
+        spinner.stopAnimation(srchField)
+        spinner.isHidden = true
+    }
+    
 
 }
 

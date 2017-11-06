@@ -54,17 +54,16 @@ class User {
         let pipe = Pipe()
         task.standardOutput = pipe
         
-        //            DispatchQueue.global().async {
+        
         task.launch()
+        
+        
         //            }
         //            task.launch()
         //            task.waitUntilExit()
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         
-        //        guard let output: String = String(data: data.subdata(in: 0 ..< data.count - 1), encoding: .utf8) else {
-        //            return ""
-        //        }
         
         guard let output: String = String(data: data, encoding: .utf8) else {
             return ""
