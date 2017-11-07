@@ -55,30 +55,59 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
         autoCompleteScrollView.isHidden = true
         tableView.target = self
         tableView.action = #selector(tableViewDidClick)
-        
+
+        NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.keyDown, handler: myKeyDownEvent)
+    
         alertImage.animator().alphaValue = 0.0
-//        srchField.sendsWholeSearchString = true
         self.checkStatus()
+        fetchADList()
         
-        DispatchQueue.global().async {
-            [unowned self] in
-            if let url = URL(string: "https://lion.box.com/shared/static/fqe8q5qgf9toq2jewsfnt3d3wiu4cn08.txt") {
-                if let list = try? String(contentsOf: (url)) {
-                    self.usersArray = list.components(separatedBy: "\n")
-                    self.users = Set(self.usersArray)
-                }
-            }
-        }
+        
       
         // Do any additional setup after loading the view.
     }
 
+    func myKeyDownEvent(event: NSEvent) -> NSEvent
+    {
+        
+        switch event.keyCode {
+        case kReturn:
+            returnKeyWasPressed = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                returnKeyWasPressed = false
+            }
+        case kDownArrowKeyCode:
+            downArrowWasPressed = true
+            autoCompleteScrollView.becomeFirstResponder()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                downArrowWasPressed = false
+            }
+        case kUpArrowKeyCode:
+            print(NSApp.keyWindow?.firstResponder)
+            for item in NSApp.keyWindow {
+                print(item)
+            }
+            if tableView.selectedRow == 0 {
+               
+            }
+            upArrowWasPressed = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                upArrowWasPressed = false
+            }
+        default:
+            break
+        }
+        return event
+    }
     
     
     @IBAction func perfSearch(_ sender: Any) {
         autoComplete()
-        search()
-//        autoCompleteScrollView.isHidden = true
+        guard user.username != srchField.stringValue else { return }
+        if returnKeyWasPressed {
+            search()
+        }
+        
     }
     
     // Checks for LL domain bind and internet connection upon launch
@@ -285,7 +314,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
     @IBAction func clipButton(_ sender: Any) {
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-        let pasteboardString = "Report generated on: " + user.todaysDate + "\n\nUsername: " + srchField.stringValue + "\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue + "\nBrand: " + brandLabel.stringValue + "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA (LionBox): " + mfaLabel.stringValue + "\nCreative Cloud: \(String(user.creativeCloud).capitalized)" + "\nAcrobat: \(String(user.acrobat).capitalized)"
+        let pasteboardString = "Report generated on: " + user.todaysDate + "\n\nUsername: " + user.username + "\nFull name: " + fullNameLabel.stringValue + "\nJob title: " + jobTitleLabel.stringValue + "\nLocation: " + countryLabel.stringValue + ", " + locationLabel.stringValue + "\nBrand: " + brandLabel.stringValue + "\nHyperion Code: " + hyperionCodeLabel.stringValue + "\nLocked: " + lockedLabel.stringValue + "\nDisabled: " + disabledLabel.stringValue + "\nAccount expires on: " + accExpLabel.stringValue + "\nPassword expires on: " + passExpLabel.stringValue + "\nBad Password count: " + badPassLabel.stringValue + "\nLast Logon: " + lastLogonLabel.stringValue + "\nPrimary email: " + emailLabel.stringValue + "\nLync Voice: " + lyncLabel.stringValue + "\nVPN: " + vpnLabel.stringValue + "\nMFA (LionBox): " + mfaLabel.stringValue + "\nCreative Cloud: \(String(user.creativeCloud).capitalized)" + "\nAcrobat: \(String(user.acrobat).capitalized)"
         pasteboard.setString(pasteboardString, forType: NSPasteboard.PasteboardType.string)
     }
 //      LyncCall Functionality:
@@ -307,7 +336,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
     //MARK: - AUTO COMPLETE FUNCTION
     
     func autoComplete() {
-        guard srchField.stringValue.count > 1 && !users.isEmpty else {
+        guard srchField.stringValue.count > 1 && !users.isEmpty && srchField.stringValue != user.username else {
             autoCompleteScrollView.isHidden = true
             return }
         autoCompleteScrollView.isHidden = false
@@ -319,6 +348,32 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
             }
         }
         tableView.reloadData()
+        // Update Scroll row count:
+        
+        switch displayedUsers.count {
+        case 0:
+            autoCompleteScrollView.isHidden = true
+        case 1:
+            autoCompleteScrollView.frame.size = CGSize(width: 117, height: 22)
+            autoCompleteScrollView.frame.origin = CGPoint(x: 161, y: 513)
+        case 2:
+            autoCompleteScrollView.frame.size = CGSize(width: 117, height: 42)
+            autoCompleteScrollView.frame.origin = CGPoint(x: 161, y: 493)
+        case 3:
+            autoCompleteScrollView.frame.size = CGSize(width: 117, height: 63)
+            autoCompleteScrollView.frame.origin = CGPoint(x: 161, y: 472)
+        case 4:
+            autoCompleteScrollView.frame.size = CGSize(width: 117, height: 80)
+            autoCompleteScrollView.frame.origin = CGPoint(x: 161, y: 455)
+        case 5:
+            autoCompleteScrollView.frame.size = CGSize(width: 117, height: 101)
+            autoCompleteScrollView.frame.origin = CGPoint(x: 161, y: 434)
+        default:
+            autoCompleteScrollView.frame.size = CGSize(width: 117, height: 109)
+            autoCompleteScrollView.frame.origin = CGPoint(x: 161, y: 426)
+        }
+        
+        
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -334,6 +389,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
         return nil
     }
     
+    
     //MARK: - CLICK ON AUTO-COMPLETE
     
     @objc func tableViewDidClick(){
@@ -344,10 +400,10 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
         if row == unselected && column == unselected{
             tableViewDidDeselectRow()
             return
-        }else if row != unselected && column != unselected{
+        } else if row != unselected && column != unselected{
             tableViewDidSelectRow(row)
             return
-        }else if column != unselected && row == unselected{
+        } else if column != unselected && row == unselected{
             tableviewDidSelectHeader(column)
         }
     }
@@ -357,18 +413,21 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
     }
     
     private func tableViewDidSelectRow(_ row : Int){
-        srchField.stringValue = displayedUsers[row]
+        searchFromTable(row: row)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-            self.srchField.stringValue = self.srchField.stringValue.replacingOccurrences(of: "\r", with: "")
-            self.search()
-            self.autoCompleteScrollView.isHidden = true
-        }
     }
     
     private func tableviewDidSelectHeader(_ column : Int){
         // header did select
     }
+    
+//    override func becomeFirstResponder() -> Bool {
+//
+//        tableView.selectRowIndexes(NSIndexSet(index: 1) as IndexSet, byExtendingSelection: false)
+//        return true
+//    }
+    
+    
     
     //MARK: - Shake Animation
     
@@ -384,6 +443,9 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
 
     func search() {
         guard srchField.stringValue.count >= 4 else { return }
+        if users.isEmpty {
+            fetchADList()
+        }
         user.clearValues()
         spinner.isHidden = false
         spinner.startAnimation(srchField)
@@ -398,9 +460,30 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
         }
         spinner.stopAnimation(srchField)
         spinner.isHidden = true
+        autoCompleteScrollView.isHidden = true
     }
     
-
+    func searchFromTable(row: Int) {
+        srchField.stringValue = displayedUsers[row]
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+            self.srchField.stringValue = self.srchField.stringValue.replacingOccurrences(of: "\r", with: "")
+            self.search()
+            self.autoCompleteScrollView.isHidden = true
+        }
+    }
+    
+    func fetchADList() {
+        DispatchQueue.global().async {
+            [unowned self] in
+            if let url = URL(string: "https://lion.box.com/shared/static/fqe8q5qgf9toq2jewsfnt3d3wiu4cn08.txt") {
+                if let list = try? String(contentsOf: (url)) {
+                    self.usersArray = list.components(separatedBy: "\n")
+                    self.users = Set(self.usersArray)
+                    
+                }
+            }
+        }
+    }
 }
 
 

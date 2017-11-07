@@ -307,6 +307,11 @@ class User {
             expDate = "30828"
         }
         
+        if unixToday > unixExp {
+            disabled = true
+        }
+        
+        
         passUpdateDate = formatDate(unixPass)
         passExpDate = formatDateOnly(unixPassExpDate)
         badPassTime = formatDate(unixBadPass)

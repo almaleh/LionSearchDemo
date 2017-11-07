@@ -11,6 +11,7 @@
 		2873F04E1F96694200F1BE42 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2873F04D1F96694200F1BE42 /* User.swift */; };
 		2873F0501F96720100F1BE42 /* LyncCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2873F04F1F96720100F1BE42 /* LyncCaller.swift */; };
 		287BB3041F901AF000033375 /* HyperlinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287BB3031F901AF000033375 /* HyperlinkTextField.swift */; };
+		28ACD8AC1FB14A7B00C8C2DA /* KeyStrokes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ACD8AB1FB14A7B00C8C2DA /* KeyStrokes.swift */; };
 		28D2E0861F8D783800C5C030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D2E0851F8D783800C5C030 /* AppDelegate.swift */; };
 		28D2E0881F8D783800C5C030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D2E0871F8D783800C5C030 /* ViewController.swift */; };
 		28D2E08A1F8D783800C5C030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28D2E0891F8D783800C5C030 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		2873F04D1F96694200F1BE42 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2873F04F1F96720100F1BE42 /* LyncCaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyncCaller.swift; sourceTree = "<group>"; };
 		287BB3031F901AF000033375 /* HyperlinkTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperlinkTextField.swift; sourceTree = "<group>"; };
+		28ACD8AB1FB14A7B00C8C2DA /* KeyStrokes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStrokes.swift; sourceTree = "<group>"; };
 		28D2E0821F8D783800C5C030 /* Lion Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lion Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		28D2E0851F8D783800C5C030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28D2E0871F8D783800C5C030 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 				287BB3031F901AF000033375 /* HyperlinkTextField.swift */,
 				2873F04D1F96694200F1BE42 /* User.swift */,
 				2873F04F1F96720100F1BE42 /* LyncCaller.swift */,
+				28ACD8AB1FB14A7B00C8C2DA /* KeyStrokes.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				2848ACED1FA8142000514A4C /* SheetViewController.swift in Sources */,
 				2873F04E1F96694200F1BE42 /* User.swift in Sources */,
 				2873F0501F96720100F1BE42 /* LyncCaller.swift in Sources */,
+				28ACD8AC1FB14A7B00C8C2DA /* KeyStrokes.swift in Sources */,
 				28D2E0881F8D783800C5C030 /* ViewController.swift in Sources */,
 				28D2E0861F8D783800C5C030 /* AppDelegate.swift in Sources */,
 				287BB3041F901AF000033375 /* HyperlinkTextField.swift in Sources */,
