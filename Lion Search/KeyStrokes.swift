@@ -8,6 +8,7 @@
 
 import Foundation
 
+var recentSearch = false
 var returnKeyWasPressed = false
 var upArrowWasPressed = false
 var downArrowWasPressed = false

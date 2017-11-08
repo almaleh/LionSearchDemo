@@ -232,7 +232,7 @@ class User {
         if city == "" {
             city = reg(cityPat2)
         }
-        print(city)
+        
         groupList = reg(groupListPat)
         groups = regGroup(groupMemberPat, regStr: groupList)
         groups.sort()

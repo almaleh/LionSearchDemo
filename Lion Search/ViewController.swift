@@ -42,6 +42,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
     var displayedUsers = [String]()
     var usersArray = [String]()
     var users = Set<String>()
+    let versionNumber = String(describing:Bundle.main.infoDictionary!["CFBundleShortVersionString"]!)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,9 +63,8 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
         self.checkStatus()
         fetchADList()
         
+
         
-      
-        // Do any additional setup after loading the view.
     }
 
     func myKeyDownEvent(event: NSEvent) -> NSEvent
@@ -72,23 +72,26 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
         
         switch event.keyCode {
         case kReturn:
+            guard let firstResponder = NSApp.keyWindow?.firstResponder else { break }
+            if firstResponder == tableView && !displayedUsers.isEmpty {
+                searchFromTable(row: tableView.selectedRow)
+            }
+            
+            keyDown(with: event)
             returnKeyWasPressed = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 returnKeyWasPressed = false
             }
         case kDownArrowKeyCode:
-            downArrowWasPressed = true
             autoCompleteScrollView.becomeFirstResponder()
+            downArrowWasPressed = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 downArrowWasPressed = false
             }
         case kUpArrowKeyCode:
-            print(NSApp.keyWindow?.firstResponder)
-            for item in NSApp.keyWindow {
-                print(item)
-            }
-            if tableView.selectedRow == 0 {
-               
+            guard let firstResponder = NSApp.keyWindow?.firstResponder else { break }
+            if tableView.selectedRow == 0 && firstResponder == tableView {
+                srchField.window?.makeFirstResponder(srchField)
             }
             upArrowWasPressed = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -103,7 +106,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
     
     @IBAction func perfSearch(_ sender: Any) {
         autoComplete()
-        guard user.username != srchField.stringValue else { return }
+        guard !recentSearch else { return }
         if returnKeyWasPressed {
             search()
         }
@@ -339,6 +342,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
         guard srchField.stringValue.count > 1 && !users.isEmpty && srchField.stringValue != user.username else {
             autoCompleteScrollView.isHidden = true
             return }
+        
         autoCompleteScrollView.isHidden = false
         displayedUsers.removeAll()
         let searchValue = srchField.stringValue.lowercased()
@@ -446,6 +450,8 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
         if users.isEmpty {
             fetchADList()
         }
+
+        recentSearch = true
         user.clearValues()
         spinner.isHidden = false
         spinner.startAnimation(srchField)
@@ -461,6 +467,9 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
         spinner.stopAnimation(srchField)
         spinner.isHidden = true
         autoCompleteScrollView.isHidden = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            recentSearch = false
+        }
     }
     
     func searchFromTable(row: Int) {
@@ -472,6 +481,8 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
         }
     }
     
+    //MARK: - Fetch AD list and check for updates
+    
     func fetchADList() {
         DispatchQueue.global().async {
             [unowned self] in
@@ -482,8 +493,42 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
                     
                 }
             }
+            if let urlUpdate = URL(string: "https://lion.box.com/shared/static/sip0jucsj9j6llw8tyjkf0kxto6ji1nd.txt" ) {
+                if let onlineVersion = try? String(contentsOf: (urlUpdate)) {
+                    let start = onlineVersion.startIndex
+                    let end = onlineVersion.index(start, offsetBy: 3)
+                    if onlineVersion[start...end] != self.versionNumber {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        let update = self.dialogOKCancel(question: "An update is available!", text: "Version 0.90 is now available. Would you like to download it?")
+                        }
+                    }
+                }
+            }
         }
     }
+    func dialogOKCancel(question: String, text: String) -> Bool {
+        let alert = NSAlert()
+        alert.messageText = question
+        alert.informativeText = text
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "Download")
+        alert.addButton(withTitle: "Later")
+        switch alert.runModal() {
+        case .alertFirstButtonReturn:
+            NSWorkspace.shared.open(URL(string: "https://lion.box.com/v/LionSearch")!)
+            return true
+        case .alertSecondButtonReturn:
+            return false
+        default:
+            return false
+        }
+        
+//        return alert.runModal() == .alertFirstButtonReturn
+    }
+    
+    override func keyDown(with event: NSEvent) {
+    }
+    
 }
 
 
