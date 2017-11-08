@@ -342,6 +342,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
         guard srchField.stringValue.count > 1 && !users.isEmpty && srchField.stringValue != user.username else {
             autoCompleteScrollView.isHidden = true
             return }
+
         
         autoCompleteScrollView.isHidden = false
         displayedUsers.removeAll()
@@ -350,6 +351,11 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
             if word.lowercased().hasPrefix(searchValue) {
                 self.displayedUsers.append(word)
             }
+        }
+        displayedUsers.sort()
+        if (displayedUsers.count == 1) && srchField.stringValue == displayedUsers[0].replacingOccurrences(of: "\r", with: "") {
+            autoCompleteScrollView.isHidden = true
+            return
         }
         tableView.reloadData()
         // Update Scroll row count:
