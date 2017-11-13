@@ -259,7 +259,7 @@ class User {
         if userData.contains("lockoutTime:") {
             locked = !userData.contains("lockoutTime: 0")
         }
-        disabled = !userData.contains(":userAccountControl: 512")
+        disabled = userData.contains(":userAccountControl: 514")
         
         emailPrim = reg(emailPrimPat)
         lyncVoice = userData.contains("dsAttrTypeNative:msRTCSIP-Line:")
@@ -307,7 +307,7 @@ class User {
             expDate = "30828"
         }
         
-        if unixToday > unixExp {
+        if unixToday > unixExp && expInterval != 0 {
             disabled = true
         }
         

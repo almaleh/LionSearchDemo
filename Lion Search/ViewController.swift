@@ -229,7 +229,11 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
         }
         
         if user.badPassCount != "" {
-            badPassLabel.stringValue = "\(user.badPassCount) times recently"
+            if user.badPassCount == "0" {
+                badPassLabel.stringValue = "None recently"
+            } else {
+                badPassLabel.stringValue = "\(user.badPassCount) times recently"
+            }
         } else {
             badPassLabel.stringValue = "0"
         }
@@ -504,8 +508,8 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
                     let start = onlineVersion.startIndex
                     let end = onlineVersion.index(start, offsetBy: 3)
                     if onlineVersion[start...end] != self.versionNumber {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        let update = self.dialogOKCancel(question: "An update is available!", text: "Version 0.90 is now available. Would you like to download it?")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+                        let update = self.dialogOKCancel(question: "An update is available!", text: "Version \(onlineVersion[start...end]) is now available. Would you like to download it?")
                         }
                     }
                 }
