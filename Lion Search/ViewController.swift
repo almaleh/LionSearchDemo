@@ -69,7 +69,8 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
 
     func myKeyDownEvent(event: NSEvent) -> NSEvent
     {
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { [unowned self] in
+            self.autoComplete() }
         switch event.keyCode {
         case kReturn:
             guard let firstResponder = NSApp.keyWindow?.firstResponder else { break }
@@ -105,7 +106,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
     
     
     @IBAction func perfSearch(_ sender: Any) {
-        autoComplete()
+//        autoComplete()
         guard !recentSearch else { return }
         if returnKeyWasPressed {
             search()
