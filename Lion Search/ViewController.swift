@@ -508,7 +508,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
                 if let onlineVersion = try? String(contentsOf: (urlUpdate)) {
                     let start = onlineVersion.startIndex
                     let end = onlineVersion.index(start, offsetBy: 3)
-                    if onlineVersion[start...end] != self.versionNumber {
+                    if onlineVersion[start...end] > self.versionNumber {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
                         let update = self.dialogOKCancel(question: "An update is available!", text: "Version \(onlineVersion[start...end]) is now available. Would you like to download it?")
                         }
