@@ -5,7 +5,7 @@ Pulls up user data from the Active Directory using regular expressions
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [0.93] – 2017-11-27
+## [0.93] – 2017-11-24
 ### Changed
 - Vastly improved auto-complete behavior. It’s now lightning fast, showing instant suggestions as you type!
 - Moved AD Group filter box to the top right corner
