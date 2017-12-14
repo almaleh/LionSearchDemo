@@ -15,11 +15,14 @@ class SheetViewController: NSViewController, NSTableViewDataSource, NSTableViewD
     
     @IBOutlet weak var groupNumberLabel: NSTextField!
     @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var filterLabel: NSSearchField!
+    var filteredGroups = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fullNameLabel.stringValue = user.fullName
         groupNumberLabel.stringValue = "is a member of \(user.groups.count) AD groups:"
+        filteredGroups = user.groups
 //        self.preferredContentSize = view.frame.size
 //        self.view.autoresizesSubviews = false
 //        self.view.window?.styleMask.remove(NSWindow.StyleMask.resizable)
@@ -34,14 +37,29 @@ class SheetViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         view.window!.styleMask.remove(NSWindow.StyleMask.resizable)
     }
     
+    @IBAction func filterGroups(_ sender: Any) {
+        if !filterLabel.stringValue.isEmpty {
+            var newFiltered = [String]()
+            for group in user.groups {
+                if group.lowercased().contains(filterLabel.stringValue.lowercased()) {
+                    newFiltered.append(group)
+                }
+            }
+            filteredGroups = newFiltered
+            tableView.reloadData()
+        } else {
+            filteredGroups = user.groups
+            tableView.reloadData()
+        }
+    }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return user.groups.count
+        return filteredGroups.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String = ""
-        text = user.groups[row]
+        text = filteredGroups[row]
         let ADCell = NSUserInterfaceItemIdentifier("ADGroupCell")
         if let cell = tableView.makeView(withIdentifier: ADCell, owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text

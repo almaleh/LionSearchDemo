@@ -714,7 +714,7 @@
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcP-av-LaV">
                                 <rect key="frame" x="161" y="538" width="117" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" placeholderString="LionLogin ID" usesSingleLineMode="YES" bezelStyle="round" id="icQ-LX-ir1">
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" placeholderString="LionLogin ID" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="icQ-LX-ir1">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1285,18 +1285,18 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pIU-rP-28d">
-                                <rect key="frame" x="33" y="504" width="294" height="17"/>
+                                <rect key="frame" x="18" y="506" width="211" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="is a member of the following AD groups:" id="Oew-ib-87a">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="is a member of 39 AD groups:" id="Oew-ib-87a">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ps3-Tf-3Sp">
-                                <rect key="frame" x="33" y="525" width="294" height="19"/>
+                                <rect key="frame" x="18" y="525" width="294" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Besher Al Maleh" placeholderString="Name" id="IT6-Dz-LIU">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Besher Al Maleh" placeholderString="Name" id="IT6-Dz-LIU">
                                     <font key="font" metaFont="systemMedium" size="16"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1328,14 +1328,14 @@ DQ
                                 </connections>
                             </button>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxf-Tk-5AQ">
-                                <rect key="frame" x="18" y="52" width="325" height="444"/>
+                                <rect key="frame" x="18" y="54" width="325" height="442"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="2bt-f8-hle">
-                                    <rect key="frame" x="1" y="0.0" width="323" height="443"/>
+                                    <rect key="frame" x="1" y="0.0" width="323" height="441"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView autoresizesSubviews="NO" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="44i-8w-z0D" viewBased="YES" id="7eX-8f-prZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="323" height="420"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="323" height="418"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1380,7 +1380,7 @@ DQ
                                     <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.22222222222222221" horizontal="YES" id="4qI-2M-x9u">
-                                    <rect key="frame" x="1" y="7" width="0.0" height="16"/>
+                                    <rect key="frame" x="1" y="8" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="BZQ-6W-UUF">
@@ -1392,9 +1392,22 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dP2-ym-A63" userLabel="FilterGroups">
+                                <rect key="frame" x="235" y="504" width="108" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Filter" usesSingleLineMode="YES" bezelStyle="round" id="g7k-dx-MBv">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                                <connections>
+                                    <action selector="filterGroups:" target="6KY-vQ-y4E" id="C5p-xD-ivP"/>
+                                </connections>
+                            </searchField>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="filterLabel" destination="dP2-ym-A63" id="6BU-gF-mDK"/>
                         <outlet property="fullNameLabel" destination="ps3-Tf-3Sp" id="DCu-tT-ahV"/>
                         <outlet property="groupNumberLabel" destination="pIU-rP-28d" id="kjL-K6-HMr"/>
                         <outlet property="tableView" destination="7eX-8f-prZ" id="czU-r9-Tj2"/>
@@ -1402,7 +1415,7 @@ DQ
                 </viewController>
                 <customObject id="Um0-Zv-Idu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20" y="1768"/>
+            <point key="canvasLocation" x="20" y="1767.5"/>
         </scene>
     </scenes>
     <resources>

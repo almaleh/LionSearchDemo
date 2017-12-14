@@ -2,6 +2,7 @@
 *.xcuserstate
 Lion Search/.DS_Store
 .DS_Store
+<<<<<<< HEAD
 
 # Xcode
 #
@@ -71,3 +72,7 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+=======
+.DS_Store
+.DS_Store
+>>>>>>> b62032291c3d618705f15fd5ec491bc1e9c46364
