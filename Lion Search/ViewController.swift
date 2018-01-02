@@ -220,10 +220,15 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate
             accExpLabel.stringValue = "Permanent employee"
         }
         if user.daysRemaining > 0 {
-            if case 0...18 = user.daysRemaining {
+            if case 0...15 = user.daysRemaining {
                 passExpLabel.textColor = NSColor.orange
             }
             passExpLabel.stringValue = "\(user.daysRemaining) days left, on " + user.passExpDate
+        } else if user.daysRemaining == 0 {
+            
+            passExpLabel.textColor = NSColor.orange
+            passExpLabel.stringValue = "Expires soon! On " + user.passExpDate
+        
         } else {
             passExpLabel.stringValue = "Expired \(-user.daysRemaining) days ago, on " + user.passExpDate
             passExpLabel.textColor = NSColor.red
