@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User {
+struct User {
     
     var username: String = ""
     var userData: String = ""
@@ -46,7 +46,7 @@ class User {
     var city = ""
     
     @discardableResult
-    func shell(_ args: String...) -> String {
+    mutating func shell(_ args: String...) -> String {
         let task = Process()
         task.launchPath = "/usr/bin/env"
         task.arguments = args
@@ -91,7 +91,7 @@ class User {
     
     //MARK: - Regular expression look-up method
     
-    func regex() {
+    mutating func regex() {
         
         
         let hypPat = "(?<=hcode: )\\w{6}"
@@ -157,16 +157,16 @@ class User {
             var output = ""
             let regStr = userData
             let regex = try! NSRegularExpression(pattern: pat, options: [])
-            let matches = regex.matches(in: regStr, options: [], range: NSRange(location: 0, length: regStr.characters.count))
+            let matches = regex.matches(in: regStr, options: [], range: NSRange(location: 0, length: regStr.count))
             
             
             for match in matches {
                 for n in 0..<match.numberOfRanges {
                     let range = match.range(at: n)
                     let rstart = regStr.startIndex
-                    let r = regStr.characters.index(rstart, offsetBy: range.location) ..<
-                        regStr.characters.index(rstart, offsetBy: range.location + range.length)
-                    output = regStr.substring(with: r)
+                    let r = regStr.index(rstart, offsetBy: range.location) ..<
+                        regStr.index(rstart, offsetBy: range.location + range.length)
+                    output = String(regStr[r])
                 }
             }
             return output
@@ -177,16 +177,17 @@ class User {
         func regGroup(_ pat: String, regStr: String) -> [String] {
             var output = ""
             let regex = try! NSRegularExpression(pattern: pat, options: [])
-            let matches = regex.matches(in: regStr, options: [], range: NSRange(location: 0, length: regStr.characters.count))
+            let matches = regex.matches(in: regStr, options: [], range: NSRange(location: 0, length: regStr.count))
             
             
             for match in matches {
                 for n in 0..<match.numberOfRanges {
                     let range = match.range(at: n)
                     let rstart = regStr.startIndex
-                    let r = regStr.characters.index(rstart, offsetBy: range.location) ..<
-                        regStr.characters.index(rstart, offsetBy: range.location + range.length)
-                    output = regStr.substring(with: r)
+                    let r = regStr.index(rstart, offsetBy: range.location) ..<
+                        regStr.index(rstart, offsetBy: range.location + range.length)
+                    output = String(regStr[r])
+                    
                     groups.append(output)
                 }
             }
@@ -347,7 +348,7 @@ class User {
         
     }
     
-    func clearValues() {
+    mutating func clearValues() {
         
         jobTitle = ""
         hyperion = ""

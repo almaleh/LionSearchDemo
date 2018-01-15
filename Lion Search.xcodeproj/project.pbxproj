@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		2848ACED1FA8142000514A4C /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2848ACEC1FA8142000514A4C /* SheetViewController.swift */; };
 		2873F04E1F96694200F1BE42 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2873F04D1F96694200F1BE42 /* User.swift */; };
-		2873F0501F96720100F1BE42 /* LyncCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2873F04F1F96720100F1BE42 /* LyncCaller.swift */; };
 		287BB3041F901AF000033375 /* HyperlinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287BB3031F901AF000033375 /* HyperlinkTextField.swift */; };
+		289E6E77200D51E90050B8E1 /* tableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289E6E76200D51E90050B8E1 /* tableViewExtension.swift */; };
 		28ACD8AC1FB14A7B00C8C2DA /* KeyStrokes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ACD8AB1FB14A7B00C8C2DA /* KeyStrokes.swift */; };
 		28D2E0861F8D783800C5C030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D2E0851F8D783800C5C030 /* AppDelegate.swift */; };
 		28D2E0881F8D783800C5C030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D2E0871F8D783800C5C030 /* ViewController.swift */; };
@@ -22,8 +22,8 @@
 		282500C41FB22AE0007FCC41 /* Lion Search.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lion Search.entitlements"; sourceTree = "<group>"; };
 		2848ACEC1FA8142000514A4C /* SheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
 		2873F04D1F96694200F1BE42 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		2873F04F1F96720100F1BE42 /* LyncCaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyncCaller.swift; sourceTree = "<group>"; };
 		287BB3031F901AF000033375 /* HyperlinkTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperlinkTextField.swift; sourceTree = "<group>"; };
+		289E6E76200D51E90050B8E1 /* tableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tableViewExtension.swift; sourceTree = "<group>"; };
 		28ACD8AB1FB14A7B00C8C2DA /* KeyStrokes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStrokes.swift; sourceTree = "<group>"; };
 		28D2E0821F8D783800C5C030 /* Lion Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lion Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		28D2E0851F8D783800C5C030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,7 +49,6 @@
 			children = (
 				287BB3031F901AF000033375 /* HyperlinkTextField.swift */,
 				2873F04D1F96694200F1BE42 /* User.swift */,
-				2873F04F1F96720100F1BE42 /* LyncCaller.swift */,
 				28ACD8AB1FB14A7B00C8C2DA /* KeyStrokes.swift */,
 			);
 			name = Model;
@@ -68,6 +67,7 @@
 			children = (
 				28D2E0851F8D783800C5C030 /* AppDelegate.swift */,
 				28D2E0871F8D783800C5C030 /* ViewController.swift */,
+				289E6E76200D51E90050B8E1 /* tableViewExtension.swift */,
 				2848ACEC1FA8142000514A4C /* SheetViewController.swift */,
 			);
 			name = Controller;
@@ -137,7 +137,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Besher Al Maleh";
 				TargetAttributes = {
 					28D2E0811F8D783800C5C030 = {
@@ -190,10 +190,10 @@
 			files = (
 				2848ACED1FA8142000514A4C /* SheetViewController.swift in Sources */,
 				2873F04E1F96694200F1BE42 /* User.swift in Sources */,
-				2873F0501F96720100F1BE42 /* LyncCaller.swift in Sources */,
 				28ACD8AC1FB14A7B00C8C2DA /* KeyStrokes.swift in Sources */,
 				28D2E0881F8D783800C5C030 /* ViewController.swift in Sources */,
 				28D2E0861F8D783800C5C030 /* AppDelegate.swift in Sources */,
+				289E6E77200D51E90050B8E1 /* tableViewExtension.swift in Sources */,
 				287BB3041F901AF000033375 /* HyperlinkTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,9 +330,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.resources.canada.Lion-Search";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 			};
 			name = Debug;
 		};
@@ -348,9 +348,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.resources.canada.Lion-Search";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 			};
 			name = Release;
 		};
