@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28284D9C200EABF5006E7C1E /* ViewControllerButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28284D9B200EABF5006E7C1E /* ViewControllerButtons.swift */; };
 		2848ACED1FA8142000514A4C /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2848ACEC1FA8142000514A4C /* SheetViewController.swift */; };
 		2873F04E1F96694200F1BE42 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2873F04D1F96694200F1BE42 /* User.swift */; };
 		287BB3041F901AF000033375 /* HyperlinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287BB3031F901AF000033375 /* HyperlinkTextField.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		282500C41FB22AE0007FCC41 /* Lion Search.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lion Search.entitlements"; sourceTree = "<group>"; };
+		28284D9B200EABF5006E7C1E /* ViewControllerButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerButtons.swift; sourceTree = "<group>"; };
 		2848ACEC1FA8142000514A4C /* SheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
 		2873F04D1F96694200F1BE42 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		287BB3031F901AF000033375 /* HyperlinkTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperlinkTextField.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			children = (
 				28D2E0851F8D783800C5C030 /* AppDelegate.swift */,
 				28D2E0871F8D783800C5C030 /* ViewController.swift */,
+				28284D9B200EABF5006E7C1E /* ViewControllerButtons.swift */,
 				289E6E76200D51E90050B8E1 /* tableViewExtension.swift */,
 				2848ACEC1FA8142000514A4C /* SheetViewController.swift */,
 			);
@@ -192,6 +195,7 @@
 				2873F04E1F96694200F1BE42 /* User.swift in Sources */,
 				28ACD8AC1FB14A7B00C8C2DA /* KeyStrokes.swift in Sources */,
 				28D2E0881F8D783800C5C030 /* ViewController.swift in Sources */,
+				28284D9C200EABF5006E7C1E /* ViewControllerButtons.swift in Sources */,
 				28D2E0861F8D783800C5C030 /* AppDelegate.swift in Sources */,
 				289E6E77200D51E90050B8E1 /* tableViewExtension.swift in Sources */,
 				287BB3041F901AF000033375 /* HyperlinkTextField.swift in Sources */,

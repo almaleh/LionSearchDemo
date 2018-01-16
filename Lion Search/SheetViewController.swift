@@ -12,25 +12,22 @@ class SheetViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 
     
     @IBOutlet weak var fullNameLabel: NSTextField!
-    
     @IBOutlet weak var groupNumberLabel: NSTextField!
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var filterLabel: NSSearchField!
     var filteredGroups = [String]()
+    var userData: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let user = userData else { return }
         fullNameLabel.stringValue = user.fullName
         groupNumberLabel.stringValue = "is a member of \(user.groups.count) AD groups:"
         filteredGroups = user.groups
-//        self.preferredContentSize = view.frame.size
-//        self.view.autoresizesSubviews = false
-//        self.view.window?.styleMask.remove(NSWindow.StyleMask.resizable)
-
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
-        // Do view setup here.
     }
     
     override func viewDidAppear() {
@@ -38,6 +35,7 @@ class SheetViewController: NSViewController, NSTableViewDataSource, NSTableViewD
     }
     
     @IBAction func filterGroups(_ sender: Any) {
+        guard let user = userData else { return }
         if !filterLabel.stringValue.isEmpty {
             var newFiltered = [String]()
             for group in user.groups {
@@ -69,7 +67,7 @@ class SheetViewController: NSViewController, NSTableViewDataSource, NSTableViewD
     }
     
     @IBAction func clipBtn(_ sender: Any) {
-        
+        guard let user = userData else { return }
         let pasteboard = NSPasteboard.general
         pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
         var pasteboardString = "Report generated on: " + user.todaysDate + "\nUsername: " + user.username + "\nFull name: " + user.fullName + "\nJob title: " + user.jobTitle + "\nMember of the following AD groups:\n\n"
@@ -79,7 +77,5 @@ class SheetViewController: NSViewController, NSTableViewDataSource, NSTableViewD
         }
         pasteboard.setString(pasteboardString, forType: NSPasteboard.PasteboardType.string)
     }
-        
-    
     
 }
