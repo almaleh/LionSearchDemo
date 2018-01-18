@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Lion Search.xcodeproj">
+      location = "self:/Users/Besher/Documents/XCode Projects/LionSearchDemo/Lion Search Demo.xcodeproj">
    </FileRef>
 </Workspace>

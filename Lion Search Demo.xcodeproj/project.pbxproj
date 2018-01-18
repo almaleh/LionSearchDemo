@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		28284D9C200EABF5006E7C1E /* ViewControllerButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28284D9B200EABF5006E7C1E /* ViewControllerButtons.swift */; };
 		2848ACED1FA8142000514A4C /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2848ACEC1FA8142000514A4C /* SheetViewController.swift */; };
+		2849648B20116486006EAE6D /* names.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2849648A20116486006EAE6D /* names.txt */; };
 		2873F04E1F96694200F1BE42 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2873F04D1F96694200F1BE42 /* User.swift */; };
 		287BB3041F901AF000033375 /* HyperlinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287BB3031F901AF000033375 /* HyperlinkTextField.swift */; };
 		289E6E77200D51E90050B8E1 /* tableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289E6E76200D51E90050B8E1 /* tableViewExtension.swift */; };
@@ -23,11 +24,12 @@
 		282500C41FB22AE0007FCC41 /* Lion Search.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lion Search.entitlements"; sourceTree = "<group>"; };
 		28284D9B200EABF5006E7C1E /* ViewControllerButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerButtons.swift; sourceTree = "<group>"; };
 		2848ACEC1FA8142000514A4C /* SheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
+		2849648A20116486006EAE6D /* names.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = names.txt; sourceTree = "<group>"; };
 		2873F04D1F96694200F1BE42 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		287BB3031F901AF000033375 /* HyperlinkTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperlinkTextField.swift; sourceTree = "<group>"; };
 		289E6E76200D51E90050B8E1 /* tableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tableViewExtension.swift; sourceTree = "<group>"; };
 		28ACD8AB1FB14A7B00C8C2DA /* KeyStrokes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStrokes.swift; sourceTree = "<group>"; };
-		28D2E0821F8D783800C5C030 /* Lion Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lion Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		28D2E0821F8D783800C5C030 /* Lion Search Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lion Search Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		28D2E0851F8D783800C5C030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28D2E0871F8D783800C5C030 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		28D2E0891F8D783800C5C030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				28D2E0891F8D783800C5C030 /* Assets.xcassets */,
+				2849648A20116486006EAE6D /* names.txt */,
 				28D2E08E1F8D783800C5C030 /* Info.plist */,
 			);
 			name = "Support Files";
@@ -96,7 +99,7 @@
 		28D2E0831F8D783800C5C030 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				28D2E0821F8D783800C5C030 /* Lion Search.app */,
+				28D2E0821F8D783800C5C030 /* Lion Search Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,9 +119,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		28D2E0811F8D783800C5C030 /* Lion Search */ = {
+		28D2E0811F8D783800C5C030 /* Lion Search Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 28D2E0911F8D783800C5C030 /* Build configuration list for PBXNativeTarget "Lion Search" */;
+			buildConfigurationList = 28D2E0911F8D783800C5C030 /* Build configuration list for PBXNativeTarget "Lion Search Demo" */;
 			buildPhases = (
 				28D2E07E1F8D783800C5C030 /* Sources */,
 				28D2E07F1F8D783800C5C030 /* Frameworks */,
@@ -128,9 +131,9 @@
 			);
 			dependencies = (
 			);
-			name = "Lion Search";
+			name = "Lion Search Demo";
 			productName = "Lion Search";
-			productReference = 28D2E0821F8D783800C5C030 /* Lion Search.app */;
+			productReference = 28D2E0821F8D783800C5C030 /* Lion Search Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +159,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 28D2E07D1F8D783800C5C030 /* Build configuration list for PBXProject "Lion Search" */;
+			buildConfigurationList = 28D2E07D1F8D783800C5C030 /* Build configuration list for PBXProject "Lion Search Demo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -169,7 +172,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				28D2E0811F8D783800C5C030 /* Lion Search */,
+				28D2E0811F8D783800C5C030 /* Lion Search Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -181,6 +184,7 @@
 			files = (
 				28D2E08A1F8D783800C5C030 /* Assets.xcassets in Resources */,
 				28D2E08D1F8D783800C5C030 /* Main.storyboard in Resources */,
+				2849648B20116486006EAE6D /* names.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +267,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -314,7 +318,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -331,8 +335,8 @@
 				DEVELOPMENT_TEAM = S9M2AHXJQE;
 				INFOPLIST_FILE = "Lion Search/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.resources.canada.Lion-Search";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.resources.canada.Lion-Search-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -349,8 +353,8 @@
 				DEVELOPMENT_TEAM = S9M2AHXJQE;
 				INFOPLIST_FILE = "Lion Search/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.resources.canada.Lion-Search";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.resources.canada.Lion-Search-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -361,7 +365,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		28D2E07D1F8D783800C5C030 /* Build configuration list for PBXProject "Lion Search" */ = {
+		28D2E07D1F8D783800C5C030 /* Build configuration list for PBXProject "Lion Search Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				28D2E08F1F8D783800C5C030 /* Debug */,
@@ -370,7 +374,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		28D2E0911F8D783800C5C030 /* Build configuration list for PBXNativeTarget "Lion Search" */ = {
+		28D2E0911F8D783800C5C030 /* Build configuration list for PBXNativeTarget "Lion Search Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				28D2E0921F8D783800C5C030 /* Debug */,

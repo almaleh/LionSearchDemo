@@ -14,11 +14,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="Lion Search" id="1Xt-HY-uBw">
+                            <menuItem title="Lion Search Demo" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Lion Search" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Lion Search Demo" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About Lion Search" id="5kV-Vb-QxS">
+                                        <menuItem title="About Lion Search Demo" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -32,7 +32,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide Lion Search" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide Lion Search Demo" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -50,7 +50,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit Lion Search" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit Lion Search Demo" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -643,7 +643,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="Lion Search Help" hidden="YES" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="Lion Search Demo Help" hidden="YES" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -657,7 +657,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Lion_Search" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Lion_Search_Demo" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -666,7 +666,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Lion Search" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Lion Search Demo" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="613" y="281" width="440" height="580"/>
@@ -688,7 +688,7 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Lion_Search" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Lion_Search_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="440" height="580"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -727,7 +727,7 @@
                                 <rect key="frame" x="288" y="541" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nsP-PY-0mU" customClass="HyperTextField" customModule="Lion_Search" customModuleProvider="target">
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nsP-PY-0mU" customClass="HyperTextField" customModule="Lion_Search_Demo" customModuleProvider="target">
                                 <rect key="frame" x="243" y="332" width="140" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Click here to unlock" id="Ok5-fy-jnX">
@@ -1279,7 +1279,7 @@
         <!--Sheet View Controller-->
         <scene sceneID="TUr-sW-N3T">
             <objects>
-                <viewController storyboardIdentifier="SheetViewController" id="6KY-vQ-y4E" userLabel="Sheet View Controller" customClass="SheetViewController" customModule="Lion_Search" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SheetViewController" id="6KY-vQ-y4E" userLabel="Sheet View Controller" customClass="SheetViewController" customModule="Lion_Search_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="KbR-iA-tqe">
                         <rect key="frame" x="0.0" y="0.0" width="360" height="555"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -1419,8 +1419,8 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="AlertCautionBadgeIcon" width="105" height="97"/>
-        <image name="LionSearch2 low quality" width="20.159999847412109" height="15.359999656677246"/>
+        <image name="AlertCautionBadgeIcon" width="209.5" height="194"/>
+        <image name="LionSearch2 low quality" width="37.919998168945312" height="29"/>
         <image name="NSStatusNone" width="16" height="16"/>
         <image name="buttonCell:HVx-1I-6IF:image" width="1" height="1">
             <mutableData key="keyedArchiveRepresentation">

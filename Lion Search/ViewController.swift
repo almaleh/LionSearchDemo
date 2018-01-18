@@ -59,7 +59,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSSearchFieldDelega
         NSEvent.addLocalMonitorForEvents(matching: NSEvent.EventTypeMask.keyDown, handler: myKeyDownEvent)
     
         alertImage.animator().alphaValue = 0.0
-        self.checkStatus()
+//        self.checkStatus()
         fetchADList()
         
     }
@@ -296,15 +296,18 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSSearchFieldDelega
     //MARK: - Fetch AD list and check for updates
     
     func fetchADList() {
+        let fm = FileManager.default
         DispatchQueue.global().async {
             [unowned self] in
-            if let url = URL(string: "https://lion.box.com/shared/static/fqe8q5qgf9toq2jewsfnt3d3wiu4cn08.txt") {
-                if let list = try? String(contentsOf: (url)) {
+            if let listPath = Bundle.main.path(forResource: "names", ofType: "txt") {
+                if let list = try? String(contentsOfFile: listPath) {
                     self.usersArray = list.components(separatedBy: "\n")
                     self.users = Set(self.usersArray)
-                    
                 }
             }
+            print(self.users)
+            
+            
             if let urlUpdate = URL(string: "https://lion.box.com/shared/static/sip0jucsj9j6llw8tyjkf0kxto6ji1nd.txt" ) {
                 if let onlineVersion = try? String(contentsOf: (urlUpdate)) {
                     let start = onlineVersion.startIndex
