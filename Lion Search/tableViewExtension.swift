@@ -149,6 +149,7 @@ extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
     func searchFromTable(row: Int) {
         srchField.stringValue = displayedUsers[row]
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+            [unowned self] in 
             self.srchField.stringValue = self.srchField.stringValue.replacingOccurrences(of: "\r", with: "")
             self.search()
             self.autoCompleteScrollView.isHidden = true

@@ -314,6 +314,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSSearchFieldDelega
                     let end = onlineVersion.index(start, offsetBy: 3)
                     if onlineVersion[start...end] > self.versionNumber {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+                            [unowned self] in 
                             let _ = self.dialogOKCancel(question: "An update is available!", text: "Version \(onlineVersion[start...end]) is now available. Would you like to download it?")
                         }
                     }
