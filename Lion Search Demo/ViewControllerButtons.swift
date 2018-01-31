@@ -35,8 +35,13 @@ extension ViewController {
         user.username = srchField.stringValue
         if user.username != "" {
             
-            user.userData = user.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/\(user.username)")
-            
+//            user.userData = user.shell("dscl", "localhost", "-read", "Active Directory/LL/All Domains/Users/\(user.username)")
+            switch user.username.lowercased() {
+            case "hancock": user.userData = user.mockShell(user.username)
+            case "clarkson": user.userData = user.mockShell(user.username)
+            case "leblanc": user.userData = user.mockShell(user.username)
+            default: user.userData = user.mockShell("Unknown")
+            }
             user.regex()
             self.updateLabels()
             
@@ -69,7 +74,7 @@ extension ViewController {
     
     @IBAction func helpBtn(_ sender: Any) {
         
-        NSWorkspace.shared.open(URL(string: "https://lion.box.com/v/LionSearchHelp")!)
+//        NSWorkspace.shared.open(URL(string: "https://lion.box.com/v/LionSearchHelp")!)
         
     }
     

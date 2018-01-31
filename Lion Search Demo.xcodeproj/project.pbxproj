@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		281E134E2017D2D700C45AA8 /* Hancock.txt in Resources */ = {isa = PBXBuildFile; fileRef = 281E134B2017D2D600C45AA8 /* Hancock.txt */; };
+		281E13522017D37900C45AA8 /* Clarkson.txt in Resources */ = {isa = PBXBuildFile; fileRef = 281E13512017D37800C45AA8 /* Clarkson.txt */; };
+		281E13542017E46E00C45AA8 /* Leblanc.txt in Resources */ = {isa = PBXBuildFile; fileRef = 281E13532017E46D00C45AA8 /* Leblanc.txt */; };
 		28284D9C200EABF5006E7C1E /* ViewControllerButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28284D9B200EABF5006E7C1E /* ViewControllerButtons.swift */; };
 		2848ACED1FA8142000514A4C /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2848ACEC1FA8142000514A4C /* SheetViewController.swift */; };
 		2849648B20116486006EAE6D /* names.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2849648A20116486006EAE6D /* names.txt */; };
@@ -21,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		281E134B2017D2D600C45AA8 /* Hancock.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Hancock.txt; sourceTree = "<group>"; };
+		281E13512017D37800C45AA8 /* Clarkson.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Clarkson.txt; sourceTree = "<group>"; };
+		281E13532017E46D00C45AA8 /* Leblanc.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Leblanc.txt; sourceTree = "<group>"; };
 		282500C41FB22AE0007FCC41 /* Lion Search.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lion Search.entitlements"; sourceTree = "<group>"; };
 		28284D9B200EABF5006E7C1E /* ViewControllerButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerButtons.swift; sourceTree = "<group>"; };
 		2848ACEC1FA8142000514A4C /* SheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +89,9 @@
 			children = (
 				28D2E0891F8D783800C5C030 /* Assets.xcassets */,
 				2849648A20116486006EAE6D /* names.txt */,
+				281E13512017D37800C45AA8 /* Clarkson.txt */,
+				281E13532017E46D00C45AA8 /* Leblanc.txt */,
+				281E134B2017D2D600C45AA8 /* Hancock.txt */,
 				28D2E08E1F8D783800C5C030 /* Info.plist */,
 			);
 			name = "Support Files";
@@ -91,7 +100,7 @@
 		28D2E0791F8D783800C5C030 = {
 			isa = PBXGroup;
 			children = (
-				28D2E0841F8D783800C5C030 /* Lion Search */,
+				28D2E0841F8D783800C5C030 /* Lion Search Demo */,
 				28D2E0831F8D783800C5C030 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -104,7 +113,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		28D2E0841F8D783800C5C030 /* Lion Search */ = {
+		28D2E0841F8D783800C5C030 /* Lion Search Demo */ = {
 			isa = PBXGroup;
 			children = (
 				282500C41FB22AE0007FCC41 /* Lion Search.entitlements */,
@@ -113,7 +122,7 @@
 				2873F04A1F9668F500F1BE42 /* View */,
 				2873F04C1F96691400F1BE42 /* Support Files */,
 			);
-			path = "Lion Search";
+			path = "Lion Search Demo";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +194,9 @@
 				28D2E08A1F8D783800C5C030 /* Assets.xcassets in Resources */,
 				28D2E08D1F8D783800C5C030 /* Main.storyboard in Resources */,
 				2849648B20116486006EAE6D /* names.txt in Resources */,
+				281E134E2017D2D700C45AA8 /* Hancock.txt in Resources */,
+				281E13542017E46E00C45AA8 /* Leblanc.txt in Resources */,
+				281E13522017D37900C45AA8 /* Clarkson.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,14 +342,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Lion Search/Lion Search.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Lion Search Demo/Lion Search.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = S9M2AHXJQE;
-				INFOPLIST_FILE = "Lion Search/Info.plist";
+				INFOPLIST_FILE = "Lion Search Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.resources.canada.Lion-Search-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -348,14 +363,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Lion Search/Lion Search.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Lion Search Demo/Lion Search.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = S9M2AHXJQE;
-				INFOPLIST_FILE = "Lion Search/Info.plist";
+				INFOPLIST_FILE = "Lion Search Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.resources.canada.Lion-Search-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;

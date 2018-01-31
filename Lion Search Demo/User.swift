@@ -69,7 +69,7 @@ struct User {
             return ""
         }
         
-        
+
         if args[0].contains("dsconfigad") {
             guard output.contains("global.publicisgroupe.net") else { print("UNBOUND")
                 llBound = false
@@ -87,6 +87,25 @@ struct User {
         wrongID = false
         return output
         
+    }
+    
+    mutating func mockShell(_ string: String = "Dog") -> String {
+        wrongID = false
+        var input = string
+        if string == "Dog" {
+            switch Int(arc4random_uniform(3)){
+            case 0: input = "Kelly"
+            case 1: input = "Leblanc"
+            default: input = "Hancock"
+            }
+        }
+        if let path = Bundle.main.path(forResource: input.capitalized, ofType: "txt") {
+            if let output = try? String(contentsOfFile: path, encoding: .utf8)  {
+                return output
+            }
+        }
+        wrongID = true
+        return ""
     }
     
     //MARK: - Regular expression look-up method

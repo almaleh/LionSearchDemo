@@ -47,11 +47,9 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSSearchFieldDelega
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        if #available(OSX 10.11, *) {
-            srchField.delegate = self
-        } else {
-            // Fallback on earlier versions
-        }
+        
+        srchField.delegate = self
+        
         autoCompleteScrollView.isHidden = true
         tableView.target = self
         tableView.action = #selector(tableViewDidClick)
@@ -65,7 +63,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSSearchFieldDelega
     }
     
     func updateLabels() {
-        guard user.llBound == true else { return }
+//        guard user.llBound == true else { return }
         clearLabels()
         animateAlert("hide")
         hitachiLabel.isHidden = true
@@ -81,6 +79,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSSearchFieldDelega
             return
         }
         if user.wrongID {
+            print(11111111)
             animateAlert("show")
             fullNameLabel.stringValue = "Invalid user ID"
             fullNameLabel.textColor = NSColor.red
@@ -281,7 +280,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSSearchFieldDelega
         if !user.llBound {
             fullNameLabel.stringValue = "Mac is not bound to LL!"
             fullNameLabel.textColor = NSColor.red
-            jobTitleLabel.stringValue = "Bind your Mac to global.publicisgroupe.net then rerun the app"
+            jobTitleLabel.stringValue = "Bind your Mac to LL then rerun the app"
             animateAlert("show")
             spinner.stopAnimation(srchField)
             spinner.isHidden = true
@@ -296,7 +295,8 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSSearchFieldDelega
     //MARK: - Fetch AD list and check for updates
     
     func fetchADList() {
-        let fm = FileManager.default
+        
+        
         DispatchQueue.global().async {
             [unowned self] in
             if let listPath = Bundle.main.path(forResource: "names", ofType: "txt") {
@@ -305,11 +305,11 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSSearchFieldDelega
                     self.users = Set(self.usersArray)
                 }
             }
-            print(self.users)
             
+        
+            return // DISABLE FOR NOW
             
-            if let urlUpdate = URL(string: "https://lion.box.com/shared/static/sip0jucsj9j6llw8tyjkf0kxto6ji1nd.txt" ) {
-                if let onlineVersion = try? String(contentsOf: (urlUpdate)) {
+                let onlineVersion = "1.21"
                     let start = onlineVersion.startIndex
                     let end = onlineVersion.index(start, offsetBy: 3)
                     if onlineVersion[start...end] > self.versionNumber {
@@ -318,8 +318,7 @@ class ViewController: NSViewController, NSTextFieldDelegate, NSSearchFieldDelega
                             let _ = self.dialogOKCancel(question: "An update is available!", text: "Version \(onlineVersion[start...end]) is now available. Would you like to download it?")
                         }
                     }
-                }
-            }
+            
         }
     }
     

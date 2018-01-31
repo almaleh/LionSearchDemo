@@ -1,0 +1,329 @@
+dsAttrTypeNative:accountExpires: 131599476000000000
+dsAttrTypeNative:badPasswordTime: 131431449504828137
+dsAttrTypeNative:badPwdCount: 0
+dsAttrTypeNative:businessCategory: RemoteAccessVPN PWW
+dsAttrTypeNative:cn: Hancock
+dsAttrTypeNative:co: Canada
+dsAttrTypeNative:codePage: 0
+dsAttrTypeNative:company: SomeCompany
+dsAttrTypeNative:countryCode: 0
+dsAttrTypeNative:department: Creative
+dsAttrTypeNative:distinguishedName: CN=Hancock,OU=Users,OU=AMAQ,DC=global,DC=demoSomeCompany,DC=net
+dsAttrTypeNative:dSCorePropagationData: 20171003204920.0Z 20170930031717.0Z 20170825124628.0Z 20170825122635.0Z 16010714223649.0Z
+dsAttrTypeNative:employeeType: External
+dsAttrTypeNative:extensionAttribute10:
+ LYNC:ACTIVATED ON 03/10/2017 23:05:52;O365:License assigned ON 04/10/2017 03:13:38;EXCH:QUOTA RESET ON 04/10/2017 21:18:06;STEP2.1:POSTPROCESSED ON 04/10/2017 21:21:03;LyncVoice:ACTIVATED ON 05/10/2017 22:56:03;UM:ACTIVATED ON 05/10/2017 22:56:20
+dsAttrTypeNative:extensionAttribute11: PROVISION
+dsAttrTypeNative:extensionAttribute12: IM
+dsAttrTypeNative:extensionAttribute13: JOU
+dsAttrTypeNative:extensionAttribute14: O365STD
+dsAttrTypeNative:extensionAttribute15: PCOM
+dsAttrTypeNative:extensionAttribute4: PWW
+dsAttrTypeNative:extensionAttribute5: O365Base
+dsAttrTypeNative:extensionAttribute7: LEN
+dsAttrTypeNative:hcode: CZ5691
+dsAttrTypeNative:instanceType: 4
+dsAttrTypeNative:lastLogon: 131540005393317755
+dsAttrTypeNative:lastLogonTimestamp: 131535843521298546
+dsAttrTypeNative:legacyExchangeDN:
+ /o=testcROUPEX/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Recipients/cn=66065a28e6794e8fa7a6994339cb93d4-Hancock
+dsAttrTypeNative:location:
+ Montreal, QC
+dsAttrTypeNative:lockoutTime: 0
+dsAttrTypeNative:logonCount: 270
+dsAttrTypeNative:mailNickname: Hancock
+dsAttrTypeNative:manager: CN=bralla,OU=Users,OU=AMAQ,DC=global,DC=demoSomeCompany,DC=net
+dsAttrTypeNative:memberOf:
+ CN=TFT-K-OQL-AMAQ-FONTUSERS-SomeCompany-MONTREAL-CA,OU=Groups,OU=AMAQ,DC=global,DC=demoSomeCompany,DC=net
+ CN=TFT-K-APP-SP-PWW,OU=Groups,OU=Sharepoint,OU=well,DC=global,DC=demoSomeCompany,DC=net
+ CN=TFT-K-FS-AMAQ-1879stjoseph-LEN-sc,OU=Groups,OU=AMAQ,DC=global,DC=demoSomeCompany,DC=net
+ CN=TFT-K-FS-AMAQ-1879stjoseph-LEN-creation,OU=Groups,OU=AMAQ,DC=global,DC=demoSomeCompany,DC=net
+ CN=TFT-K-FS-AMAQ-1879stjoseph-LEN-modem,OU=Groups,OU=AMAQ,DC=global,DC=demoSomeCompany,DC=net
+ CN=TFT-K-OQL-AMAQ-LOCATION-CA-Quebec-1879 Sa,OU=Groups,OU=AMAQ,DC=global,DC=demoSomeCompany,DC=net
+ CN=TFT-K-OQL-AMAQ-USERS-CZ1808,OU=Groups1,OU=_Migration,OU=AMAQ,DC=global,DC=demoSomeCompany,DC=net
+ CN=TFT-K-OQL-AMAQ-HCODE-CZ1808,OU=Groups,OU=AMAQ,DC=global,DC=demoSomeCompany,DC=net
+ CN=TFT-K-OQL-AMAQ-COUNTRY-CA,OU=Groups,OU=AMAQ,DC=global,DC=demoSomeCompany,DC=net
+CN=GFS-QQS-Enforce-BOX-MFA,OU=Groups,OU=well,DC=global,DC=someComany,DC=net
+ CN=GFS-QQS-VPN-RemoteAccessVPN,OU=Groups,OU=well,DC=global,DC=someComany,DC=net
+ CN=GFS-QQS-PFEnforceADFS,OU=Groups,OU=well,DC=global,DC=someComany,DC=net
+ CN=LENDO TORONTO CANADA_len_TEAM_CAN,OU=DL,OU=Distribution Lists,OU=well,DC=global,DC=someComany,DC=net
+ CN=GFS-APP-MFT-Users-Restriction,OU=Groups,OU=APAC,DC=global,DC=someComany,DC=net
+ CN=IMAC-NEWHIRES_RES_TEAM_USA,OU=DL,OU=Distribution Lists,OU=well,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-beautyawards2016finalists,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-APP-BoxInfra-GA-Agencies,OU=Box,OU=well,DC=global,DC=someComany,DC=net
+ CN=LENDO COMMUNICATION_PGE_TEAM_FRA,OU=DL,OU=Distribution Lists,OU=well,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-printsave,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-83walker-len-projectmanagement,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-vacationcalendar,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-projecteagle,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=\#DISTRIBUTIONLIST_ZEN,OU=DL,OU=Distribution Lists,OU=well,DC=global,DC=someComany,DC=net
+ CN=GFS-APP-SP-PWW,OU=Groups,OU=Sharepoint,OU=well,DC=global,DC=someComany,DC=net
+ CN=OFFICE SERVICES TOR_LENDO_TEAM_CAN,OU=DL,OU=Distribution Lists,OU=well,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-LENDO,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=IMAC MOBILITY_RES_TEAM_USA,OU=DL,OU=Distribution Lists,OU=well,DC=global,DC=someComany,DC=net
+ CN=SOFTWARE APPROVERS MASTER_well_TEAM_USA,OU=DL,OU=Distribution Lists,OU=well,DC=global,DC=someComany,DC=net
+ CN=ON BOARD OFF BOARD SUBMITTERS_RES_TEAM_USA,OU=DL,OU=Distribution Lists,OU=well,DC=global,DC=someComany,DC=net
+ CN=HARDWARE IMAC APPROVERS_well_TEAM_USA,OU=DL,OU=Distribution Lists,OU=well,DC=global,DC=someComany,DC=net
+ CN=IMAC APPROVER LIST_well_TEAM_USA,OU=DL,OU=Distribution Lists,OU=well,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-1879stjoseph-len-projetriopelle,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-thdocs,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=ADDTO_ODL_ZOG_ALL_CAN,OU=DL,OU=Distribution Lists,OU=well,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-1879stjoseph-len-sc-loreal,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-1879stjoseph-len-sc,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-users,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-taqa,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-storagerooms,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-reviews,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-reimagine_resource_material,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-projectv,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-projectg,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-porter,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-paypal,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-pgoralcare,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-opmtl,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-noitacav,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-studio,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-proofreaders,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-production,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-officewelladmin,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-newbusiness,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-mylan,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-finance,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-estimates,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-editorial,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-discovery,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-creative,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-coreteam,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-clientservices,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-accountservices,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-83walker-rl-users,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-83walker-len-planning,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-83walker-len-officeservices,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-83walker-len-officeservices_admin,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-83walker-len-itinfo,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-83walker-len-fax,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-83walker-len-creative,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-83walker-len-controlprinterusers,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=\#DISTRIBUTIONLIST_ZOG,OU=DL,OU=Distribution Lists,OU=well,DC=global,DC=someComany,DC=net
+ CN=\#DISTRIBUTIONLIST_len,OU=DL,OU=Distribution Lists,OU=well,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-msl-transcanada,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-studioadmin,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-pdfadmin,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-masterimages,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-FS-AMAQ-188king-med-masterfonts,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-QQS-AMAQ-USERS-US9912,OU=Groups1,OU=_Migration,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-QQS-AMAQ-HCODE-US9912,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-QQS-AMAQ-COUNTRY-CA,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+ CN=GFS-QQS-AMAQ-CA-USERS,OU=Groups,OU=AMAQ,DC=global,DC=someComany,DC=net
+
+dsAttrTypeNative:msExchArchiveGUID:
+ 1275f284 c2936943 991d2260 0f11c54c
+dsAttrTypeNative:msExchArchiveName:
+ In-Place Archive - John Hancock
+dsAttrTypeNative:msExchMailboxGuid:
+ f7206c42 42ae5540 811cd082 61a46a98
+dsAttrTypeNative:msExchPoliciesExcluded: {26491cfc-9e50-4857-861b-0cb8df22b5d7}
+dsAttrTypeNative:msExchRecipientDisplayType: -2147483642
+dsAttrTypeNative:msExchRecipientSoftDeletedStatus: 0
+dsAttrTypeNative:msExchRecipientTypeDetails: 2147483648
+dsAttrTypeNative:msExchRemoteRecipientType: 3
+dsAttrTypeNative:msExchTransportRecipientSettingsFlags: 0
+dsAttrTypeNative:msExchUCVoiceMailSettings: CSHostedVoiceMail=1
+dsAttrTypeNative:msExchUMDtmfMap: reversedPhone:06109664151+ reversedPhone:41415824151+ emailAddress:66364323628347 lastNameFirstName:23628347663643 firstNameLastName:66364323628347
+dsAttrTypeNative:msExchVersion: 88218628259840
+dsAttrTypeNative:msRTCSIP-DeploymentLocator: SRV:
+dsAttrTypeNative:msRTCSIP-FederationEnabled: TRUE
+dsAttrTypeNative:msRTCSIP-InternetAccessEnabled: TRUE
+dsAttrTypeNative:msRTCSIP-Line: tel:+15148390160
+dsAttrTypeNative:msRTCSIP-OptionFlags: 385
+dsAttrTypeNative:msRTCSIP-PrimaryHomeServer:
+ CN=Lc Services,CN=Microsoft,CN=3:1,CN=Pools,CN=RTC Service,CN=Services,CN=Configuration,DC=global,DC=demoSomeCompany,DC=net
+dsAttrTypeNative:msRTCSIP-PrimaryUserAddress: sip:Hancock@demoSomeCompany.net
+dsAttrTypeNative:msRTCSIP-UserEnabled: TRUE
+dsAttrTypeNative:msRTCSIP-UserPolicies: 9=78 7=237 1=1 0=790142857
+dsAttrTypeNative:msRTCSIP-UserRoutingGroupId:
+ 2ac51344 1b18bd5d 9270f45f 9fa6ff9b
+dsAttrTypeNative:name: Hancock
+dsAttrTypeNative:objectCategory: CN=Person,CN=Schema,CN=Configuration,DC=global,DC=demoSomeCompany,DC=net
+dsAttrTypeNative:objectClass: top person organizationalPerson user
+dsAttrTypeNative:objectGUID:
+ 375bbe63 b328f640 a2f23241 e97327f8
+dsAttrTypeNative:objectSid:
+ 01050000 00000005 15000000 c7cbe28f c5a9eb90 9a831261 e8651700
+dsAttrTypeNative:otherTelephone:
+ +1 514 285 1414
+dsAttrTypeNative:proxyAddresses: sip:Hancock@demoSomeCompany.net smtp:Hancock@demoSomeCompany.net smtp:Hancock@demoSomeCompany.mail.onmicrosoft.com smtp:Hancock@demoSomeCompany.onmicrosoft.com SMTP:John.Hancock@SomeCompanyna.com
+dsAttrTypeNative:sAMAccountName: Hancock
+dsAttrTypeNative:sAMAccountType: 805306368
+dsAttrTypeNative:showInAddressBook:
+ CN=Default Global Address List,CN=All Global Address Lists,CN=Address Lists Container,CN=testcROUPEX,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=global,DC=demoSomeCompany,DC=net
+ CN=All Users,CN=All Address Lists,CN=Address Lists Container,CN=testcROUPEX,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=global,DC=demoSomeCompany,DC=net
+ CN=All Recipients(VLV),CN=All System Address Lists,CN=Address Lists Container,CN=testcROUPEX,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=global,DC=demoSomeCompany,DC=net
+dsAttrTypeNative:targetAddress: SMTP:Hancock@demoSomeCompany.mail.onmicrosoft.com
+dsAttrTypeNative:userAccountControl: 1
+dsAttrTypeNative:userPrincipalName: Hancock@demoSomeCompany.net
+dsAttrTypeNative:uSNChanged: 327456989
+dsAttrTypeNative:uSNCreated: 205860149
+dsAttrTypeNative:whenChanged: 20171027132610.0Z
+dsAttrTypeNative:whenCreated: 20170518130203.0Z
+AltSecurityIdentities: Kerberos:Hancock@demoSomeCompany.net
+AppleMetaNodeLocation:
+ /Active Directory/LL/global.demoSomeCompany.net
+AppleMetaRecordName: CN=Hancock,OU=Users,OU=AMAQ,DC=global,DC=demoSomeCompany,DC=net
+AuthenticationAuthority: ;Kerberosv5;;Hancock@GLOBAL.demoSomeCompany.NET;GLOBAL.demoSomeCompany.NET; ;NetLogon;Hancock;LL
+City: Montreal
+Comment:
+ Account UnTermed: 2017-10-03T22:45:12 , Account Termed: 2017-08-11T06:00:41
+Country: CA
+EMailAddress: John.Hancock@SomeCompany.com
+FirstName: John
+GeneratedUID: 63BE5B37-28B3-40F6-A2F2-3241E97327F8
+JobTitle:
+ Associate Director
+LastName: Hancock
+MCXFlags:
+ <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist LENLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>has_mcx_settings</key>
+	<true/>
+</dict>
+</plist>
+
+MCXSettings:
+ <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist LENLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>mcx_application_data</key>
+	<dict>
+		<key>com.apple.MCX</key>
+		<dict>
+			<key>Forced</key>
+			<array>
+				<dict>
+					<key>mcx_precedence</key>
+					<integer>500</integer>
+					<key>mcx_preference_settings</key>
+					<dict>
+						<key>com.apple.cachedaccounts.CreateAtLogin</key>
+						<true/>
+						<key>com.apple.cachedaccounts.WarnOnCreate</key>
+						<false/>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+		<key>com.apple.dock</key>
+		<dict>
+			<key>Forced</key>
+			<array>
+				<dict>
+					<key>mcx_precedence</key>
+					<integer>500</integer>
+					<key>mcx_preference_settings</key>
+					<dict>
+						<key>AppItems-Raw</key>
+						<array/>
+						<key>DocItems-Raw</key>
+						<array/>
+						<key>MCXDockSpecialFolders-Raw</key>
+						<array>
+							<string>AddDockMCXOriginalNetworkHomeFolder</string>
+						</array>
+					</dict>
+					<key>mcx_union_policy_keys</key>
+					<array>
+						<dict>
+							<key>mcx_input_key_names</key>
+							<array>
+								<string>AppItems-Raw</string>
+							</array>
+							<key>mcx_output_key_name</key>
+							<string>static-apps</string>
+							<key>mcx_remove_duplicates</key>
+							<true/>
+						</dict>
+						<dict>
+							<key>mcx_input_key_names</key>
+							<array>
+								<string>DocItems-Raw</string>
+							</array>
+							<key>mcx_output_key_name</key>
+							<string>static-others</string>
+							<key>mcx_remove_duplicates</key>
+							<true/>
+						</dict>
+						<dict>
+							<key>mcx_input_key_names</key>
+							<array>
+								<string>MCXDockSpecialFolders-Raw</string>
+							</array>
+							<key>mcx_output_key_name</key>
+							<string>MCXDockSpecialFolders</string>
+							<key>mcx_remove_duplicates</key>
+							<true/>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>loginwindow</key>
+		<dict>
+			<key>Forced</key>
+			<array>
+				<dict>
+					<key>mcx_precedence</key>
+					<integer>500</integer>
+					<key>mcx_preference_settings</key>
+					<dict>
+						<key>AutoLaunchedApplicationDictionary-raw</key>
+						<array>
+							<dict>
+								<key>AuthenticateAsLoginUserShortName</key>
+								<true/>
+								<key>MCX-NetworkHomeDirectoryItem</key>
+								<true/>
+							</dict>
+						</array>
+					</dict>
+					<key>mcx_union_policy_keys</key>
+					<array>
+						<dict>
+							<key>mcx_input_key_names</key>
+							<array>
+								<string>AutoLaunchedApplicationDictionary-raw</string>
+							</array>
+							<key>mcx_output_key_name</key>
+							<string>AutoLaunchedApplicationDictionary-managed</string>
+							<key>mcx_remove_duplicates</key>
+							<true/>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+</dict>
+</plist>
+
+Password: ********
+PhoneNumber: +15148390160
+PostalCode:
+ h9b 2V1
+PrimaryGroupID: 117863849
+PrimaryNTDomain: LL
+RealName:
+ John Hancock
+RecordName: Hancock
+RecordType: dsRecTypeStandard:Users
+SMBGroupRID: 513
+SMBPasswordLastSet: 131619043171015849
+SMBPrimaryGroupSID: S-1-5-21-2414005191-2431363525-1628603290-513
+SMBSID: S-1-5-21-2414005191-2431363525-1628603290-1533416
+State: Quebec
+Street:
+ 1879 Saint-joseph
+UniqueID: 1673419575
+UserShell: /bin/bash
