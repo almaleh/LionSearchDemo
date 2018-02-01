@@ -4,6 +4,9 @@
 # LionSearch
 Pulls up user data from the Active Directory using regular expressions
 
+<img src="https://github.com/almaleh/LionSearchDemo/blob/master/LionSearchDemo.gif" width="450">
+
+View .mov version here: https://goo.gl/mAV2ZA
 
 # Changelog
 All notable changes to this project will be documented in this file.
