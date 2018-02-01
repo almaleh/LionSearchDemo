@@ -1,3 +1,6 @@
+# This repo only contains the code for the mock LionSearch app with fake data. The real LionSearch app can be found here: https://github.com/almaleh/LionSearch
+
+
 # LionSearch
 Pulls up user data from the Active Directory using regular expressions
 
