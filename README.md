@@ -1,4 +1,4 @@
-# This repo only contains the code for the mock LionSearch app with fake data. The real LionSearch app can be found here: https://github.com/almaleh/LionSearch
+# This repo only contains the code for the mock LionSearch app with fake data, created for demo purposes. The real LionSearch app can be found here: https://github.com/almaleh/LionSearch
 
 
 # LionSearch
